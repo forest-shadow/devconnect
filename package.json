@@ -1,0 +1,33 @@
+{
+  "name": "devconnector",
+  "version": "1.0.0",
+  "description": "Social network for developers",
+  "scripts": {
+    "start": "yarn run serve",
+    "serve": "node dist/server.js",
+    "build": "yarn run build-ts",
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "somebuddy",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.16",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.10.4",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10",
+    "typescript": "^3.3.3333"
+  }
+}
