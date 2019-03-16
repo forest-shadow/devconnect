@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import bodyParser from 'body-parser'
 import { posts, users, profile } from './routes/api'
 
 dotenv.config()
@@ -11,6 +12,9 @@ mongoose
   .catch(err => console.error(err))
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // routes
 app.get('/', (req, res) => res.send('Hello'))

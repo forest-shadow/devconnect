@@ -55,6 +55,10 @@
     "no-trailing-whitespace": true,
     "no-null-keyword": true,
     "prefer-const": true,
-    "jsdoc-format": true
-  }
+    "jsdoc-format": true,
+    "object-curly-spacing": [true, "always"]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
 }
