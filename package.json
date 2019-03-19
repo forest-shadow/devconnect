@@ -12,6 +12,7 @@
     "watch-ts": "tsc -w",
     "watch-tslint": "chokidar \"./**/*.ts\" -c \"yarn run tslint\"",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint-fix": "yarn run tslint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "somebuddy",

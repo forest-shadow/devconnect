@@ -45,7 +45,35 @@ router.post('/register', async (req, res) => {
       })
     }
   } catch (error) {
-    res.status(503).json({ error: `Error: Can't create user. Reason: \n${error}` })
+    return res.status(503).json({ error: `Error: Can't create user. Reason: \n${error}` })
+  }
+})
+
+// @route GET api/users/login
+// @desc Login User / Returning JWT Token
+// @access Protected
+router.post('/login', async (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+
+  try {
+    // Find user by email
+    const user = await User.findOne({ email })
+    if (!user) {
+      return res.status(404).json({ email: 'User nor found' })
+    }
+
+    // Check Password
+    bcrypt.compare(password, user.password)
+      .then((isMatch) => {
+        if (isMatch) {
+          return res.json({ msg: 'Success' })
+        } else {
+          return res.status(400).json({ password: 'Password incorrect' })
+        }
+      })
+  } catch (error) {
+    return res.status(500).json({ error: `Unexpected server error.` })
   }
 
 })
