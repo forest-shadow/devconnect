@@ -24,7 +24,7 @@ const UserSchema: mongoose.Schema = new Schema({
   }
 })
 
-export interface User extends mongoose.Document {
+export interface IUser extends mongoose.Document {
   name: string,
   email: string,
   password: string,
@@ -32,6 +32,6 @@ export interface User extends mongoose.Document {
   date: string
 }
 
-const User = mongoose.model<User>('users', UserSchema)
+const User = mongoose.model<IUser>('users', UserSchema)
 
 export default User
