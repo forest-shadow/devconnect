@@ -18,6 +18,7 @@
   "author": "somebuddy",
   "license": "MIT",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.3.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",

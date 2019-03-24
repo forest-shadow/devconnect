@@ -1,6 +1,7 @@
 import express from 'express'
 import gravatar from 'gravatar'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 import User from '../../models/User'
 
@@ -67,7 +68,23 @@ router.post('/login', async (req, res) => {
     bcrypt.compare(password, user.password)
       .then((isMatch) => {
         if (isMatch) {
-          return res.json({ msg: 'Success' })
+          // User Matched
+
+          // Create JWT Payload
+          const payload = {
+            id: user.id,
+            name: user.name,
+            avatar: user.avatar
+          }
+
+          // Sign Token
+          jwt.sign(payload, process.env.SECRET, { expiresIn: 3600 }, (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token
+            })
+
+          })
         } else {
           return res.status(400).json({ password: 'Password incorrect' })
         }
