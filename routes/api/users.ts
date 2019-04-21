@@ -2,6 +2,7 @@ import express from 'express'
 import gravatar from 'gravatar'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import passport from 'passport'
 
 import User from '../../models/User'
 
@@ -94,5 +95,16 @@ router.post('/login', async (req, res) => {
   }
 
 })
+
+// @route   GET api/users/current
+// @desc    Return current user
+// @access  Public
+router.get('/current',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { id, name, email } = req.user
+    res.json({ id, name, email })
+  }
+)
 
 export default router
