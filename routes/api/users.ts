@@ -5,18 +5,19 @@ import jwt from 'jsonwebtoken'
 import passport from 'passport'
 
 import User from '../../models/User'
+import API from '../../constants/API'
 
 const router = express.Router()
 
 // @route   GET api/users/test
 // @desc    Tests users route
 // @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Users works!' }))
+router.get(API.USERS.TEST, (req, res) => res.json({ msg: 'Users works!' }))
 
 // @route GET api/users/register
 // @desc Register user
 // @access Public
-router.post('/register', async (req, res) => {
+router.post(API.USERS.REGISTER, async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (user) {
@@ -54,7 +55,7 @@ router.post('/register', async (req, res) => {
 // @route GET api/users/login
 // @desc Login User / Returning JWT Token
 // @access Protected
-router.post('/login', async (req, res) => {
+router.post(API.USERS.LOGIN, async (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
@@ -99,7 +100,7 @@ router.post('/login', async (req, res) => {
 // @route   GET api/users/current
 // @desc    Return current user
 // @access  Public
-router.get('/current',
+router.get(API.USERS.CURRENT,
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { id, name, email } = req.user

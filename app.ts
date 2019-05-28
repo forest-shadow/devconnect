@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import passport from 'passport'
 
-import { posts, users, profile } from './routes/api'
+import { RouteConfigs } from './config/routes'
 
 dotenv.config()
 
@@ -24,8 +24,6 @@ import passportConfig from './config/passport'
 passportConfig(passport)
 
 // routes
-app.use('/api/posts', posts)
-app.use('/api/profile', profile)
-app.use('/api/users', users)
+RouteConfigs.forEach((routeConfig) => { app.use(routeConfig.path, routeConfig.middleware) })
 
 export default app
