@@ -8,6 +8,7 @@ import { RouteConfigs } from './config/routes'
 
 dotenv.config()
 
+// TODO: extract mongoose configuration to `./config`
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
@@ -24,6 +25,7 @@ import passportConfig from './config/passport'
 passportConfig(passport)
 
 // routes
+// TODO: wrap routes configuration into separate function
 RouteConfigs.forEach((routeConfig) => { app.use(routeConfig.path, routeConfig.middleware) })
 
 export default app

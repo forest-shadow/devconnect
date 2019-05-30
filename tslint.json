@@ -57,7 +57,7 @@
     "prefer-const": true,
     "jsdoc-format": true,
     "object-curly-spacing": [true, "always"],
-    "max-line-length": [true, 100]
+    "max-line-length": [true, 110]
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
