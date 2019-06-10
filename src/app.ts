@@ -2,6 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import passport from 'passport'
+import path from 'path'
+
+process.env['NODE_CONFIG_DIR'] = path.resolve(__dirname, '..', 'src', 'config')
 
 import connectDB from './config/db'
 import { RouteConfigs } from './config/routes'

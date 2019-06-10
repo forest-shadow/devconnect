@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import API from '../constants/api'
-import * as RoutesMiddleware from '../routes/api/index'
+import * as RoutesMiddleware from '../routes/api'
 
 interface RouteConfig {
   path: string

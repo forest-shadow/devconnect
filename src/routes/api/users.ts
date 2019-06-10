@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import passport from 'passport'
 
 import User from '../../models/User'
-import API from '../../constants/API'
+import API from '../../constants/api'
 
 import { userCredentialValidators, userRegistrationMiddleware } from '../../middleware/users/register'
 

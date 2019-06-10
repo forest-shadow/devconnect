@@ -11,7 +11,7 @@
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,TSlint\" -c \"cyan.bold,green.bold,purple.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run watch-tslint\"",
     "watch-node": "nodemon dist/server.js",
     "watch-ts": "tsc -w",
-    "watch-tslint": "chokidar \"./**/*.ts\" -c \"yarn run tslint\"",
+    "watch-tslint": "chokidar \"./src/**/*.ts\" -c \"yarn run tslint\"",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "tslint-fix": "yarn run tslint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
