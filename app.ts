@@ -1,18 +1,14 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import passport from 'passport'
 
+import connectDB from './config/db'
 import { RouteConfigs } from './config/routes'
 
 dotenv.config()
 
-// TODO: extract mongoose configuration to `./config`
-mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error(err))
+connectDB()
 
 const app = express()
 

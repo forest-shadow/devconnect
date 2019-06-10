@@ -19,6 +19,7 @@
   "author": "somebuddy",
   "license": "MIT",
   "dependencies": {
+    "@types/config": "^0.0.34",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "config": "^3.1.0",
@@ -47,6 +48,7 @@
     "chokidar-cli": "^1.2.2",
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.10",
+    "ts-node": "^8.2.0",
     "tslint": "^5.13.1",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "^3.3.3333"
