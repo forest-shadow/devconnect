@@ -80,7 +80,7 @@ const ProfileSchema = new mongoose.Schema({
   }
 })
 
-interface MongooseProfileModel extends mongoose.Document {
+interface ProfileDocument extends mongoose.Document {
   user: Schema.Types.ObjectId,
   company: string,
   website: string,
@@ -92,6 +92,6 @@ interface MongooseProfileModel extends mongoose.Document {
   experience: [string|Date|boolean]
 }
 
-const Profile = mongoose.model<MongooseProfileModel>('profile', ProfileSchema)
+const Profile = mongoose.model<ProfileDocument>('profile', ProfileSchema)
 
 export default Profile
