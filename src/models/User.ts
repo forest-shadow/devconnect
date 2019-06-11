@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema
-
-const UsersSchema: mongoose.Schema = new Schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -25,7 +23,7 @@ const UsersSchema: mongoose.Schema = new Schema({
   }
 })
 
-interface UsersDocument extends mongoose.Document {
+interface UserDocument extends mongoose.Document {
   name: string,
   email: string,
   password: string,
@@ -33,6 +31,6 @@ interface UsersDocument extends mongoose.Document {
   date: string
 }
 
-const User = mongoose.model<UsersDocument>('users', UsersSchema)
+const User = mongoose.model<UserDocument>('users', UserSchema)
 
 export default User
