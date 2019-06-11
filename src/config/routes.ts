@@ -1,4 +1,5 @@
-import { Router } from 'express'
+import { Express, Router } from 'express'
+
 import API from '../constants/api'
 import * as RoutesMiddleware from '../routes/api'
 
@@ -7,7 +8,7 @@ interface RouteConfig {
   middleware: Router
 }
 
-export const RouteConfigs: RouteConfig[] = [
+const RouteConfigs: RouteConfig[] = [
   {
     path: API.USERS.BASE,
     middleware: RoutesMiddleware.users
@@ -21,3 +22,12 @@ export const RouteConfigs: RouteConfig[] = [
     middleware: RoutesMiddleware.posts,
   }
 ]
+
+const defineRoutes = (app: Express) => {
+  RouteConfigs.forEach((routeConfig) => {
+    app.use(routeConfig.path, routeConfig.middleware)
+  })
+}
+
+
+export default defineRoutes
