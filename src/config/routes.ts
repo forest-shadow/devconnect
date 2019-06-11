@@ -1,7 +1,7 @@
 import { Express, Router } from 'express'
 
 import API from '../constants/api'
-import * as RoutesMiddleware from '../routes/api'
+import * as AppRoutesMiddleware from '../routes'
 
 interface RouteConfig {
   path: string
@@ -11,15 +11,15 @@ interface RouteConfig {
 const RouteConfigs: RouteConfig[] = [
   {
     path: API.USERS.BASE,
-    middleware: RoutesMiddleware.users
+    middleware: AppRoutesMiddleware.users
   },
   {
     path: API.POSTS.BASE,
-    middleware: RoutesMiddleware.posts,
+    middleware: AppRoutesMiddleware.posts,
   },
   {
     path: API.PROFILE.BASE,
-    middleware: RoutesMiddleware.posts,
+    middleware: AppRoutesMiddleware.posts,
   }
 ]
 

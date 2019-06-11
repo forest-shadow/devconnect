@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 import { check, validationResult } from 'express-validator/check'
 import bcrypt from 'bcryptjs'
 
-import User from '../../models/User'
-import { getGravatarIcon } from '../../services/gravatar'
+import User from '../../../models/User'
+import { getGravatarIcon } from '../../../services/gravatar'
 
 export const userCredentialValidators = [
   check('name', 'Name is required').not().isEmpty(),
