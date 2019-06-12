@@ -29,7 +29,7 @@ export const userLoginMiddleware = async (req: Request, res: Response) => {
 
     // check password matching
     const isPasswordMatch = await bcrypt.compare(password, user.password)
-    if(!isPasswordMatch) {
+    if (!isPasswordMatch) {
       return res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] })
     }
 

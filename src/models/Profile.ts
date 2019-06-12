@@ -25,7 +25,7 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String
   },
-  githubusername: {
+  githubUsername: {
     type: String
   },
   experience: [
@@ -40,6 +40,36 @@ const ProfileSchema = new mongoose.Schema({
       },
       location: {
         type: String
+      },
+      from: {
+        type: Date,
+        required: true
+      },
+      to: {
+        type: Date
+      },
+      current: {
+        type: Boolean,
+        default: false
+      },
+      description: {
+        type: String
+      }
+    }
+  ],
+  education: [
+    {
+      school: {
+        type: String,
+        required: true
+      },
+      degree: {
+        type: String,
+        required: true
+      },
+      fieldOfStudy: {
+        type: String,
+        required: true
       },
       from: {
         type: Date,
@@ -88,8 +118,11 @@ interface ProfileDocument extends mongoose.Document {
   status: string,
   skills: string,
   bio: string,
-  githubusername: string,
-  experience: [string|Date|boolean]
+  githubUsername: string,
+  experience: [{[index: string]: string|Date|boolean}],
+  education: [{[index: string]: string|Date|boolean}],
+  string: [{[index: string]: string}],
+  date: Date
 }
 
 const Profile = mongoose.model<ProfileDocument>('profile', ProfileSchema)
