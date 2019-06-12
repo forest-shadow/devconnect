@@ -16,6 +16,7 @@ const app = express()
 connectDB()
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(passport.initialize())
 
 import passportConfig from './config/passport'

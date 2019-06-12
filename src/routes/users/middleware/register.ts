@@ -1,9 +1,11 @@
 import { Request, Response } from 'express'
 import { check, validationResult } from 'express-validator/check'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
+// TODO: figure out absolute path usage
 import User from '../../../models/User'
-import { getGravatarIcon } from '../../../services/gravatar'
+import getGravatarIcon from '../../../services/gravatar'
 
 export const userCredentialValidators = [
   check('name', 'Name is required').not().isEmpty(),
@@ -35,9 +37,24 @@ export const userRegistrationMiddleware = async (req: Request, res: Response) =>
       const passwordSalt = await bcrypt.genSalt(10)
       newUser.password = await bcrypt.hash(password, passwordSalt)
       await newUser.save()
-        // return jsonwebtoken in response
-        .then(user => res.json(user))
         .catch(err => console.warn(err))
+
+      // return jsonwebtoken in response
+      const payload = {
+        user: {
+          id: newUser.id
+        }
+      }
+
+      jwt.sign(
+        payload,
+        process.env.SECRET,
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err
+          res.json({ token })
+        }
+      )
     }
   } catch (error) {
     console.error(error.message)

@@ -1,10 +1,10 @@
-import gravatar from 'gravatar'
-import * as GravatarModule from 'gravatar'
+import gravatar, { Options } from 'gravatar'
 
-const iconOptions: GravatarModule.Options = {
+const iconOptions: Options = {
   s: '200', // Size
   r: 'pg', // Rating
   d: 'mm' // Default
 }
 
-export const getGravatarIcon = (email: string) => gravatar.url(email, iconOptions)
+const getGravatarIcon = (email: string) => gravatar.url(email, iconOptions)
+export default getGravatarIcon
