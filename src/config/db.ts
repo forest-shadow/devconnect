@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
 import config from 'config'
 
+// mongoose fix for deprecation warning
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useFindAndModify', false)
+mongoose.set('useCreateIndex', true)
+
 const getDBUri = config.get<Function>('mongoURI')
 
 const connectDB = async () => {

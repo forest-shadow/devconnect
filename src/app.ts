@@ -1,6 +1,5 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import bodyParser from 'body-parser'
 import passport from 'passport'
 import path from 'path'
 
@@ -12,12 +11,11 @@ import defineRoutes from './config/routes'
 
 dotenv.config()
 
-connectDB()
-
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+connectDB()
+
+app.use(express.json())
 app.use(passport.initialize())
 
 import passportConfig from './config/passport'
