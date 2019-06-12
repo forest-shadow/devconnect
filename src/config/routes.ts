@@ -10,8 +10,8 @@ interface RouteConfig {
 
 const RouteConfigs: RouteConfig[] = [
   {
-    path: API.USERS.BASE,
-    middleware: AppRoutesMiddleware.users
+    path: API.USER.BASE,
+    middleware: AppRoutesMiddleware.user
   },
   {
     path: API.POSTS.BASE,

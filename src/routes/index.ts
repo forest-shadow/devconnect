@@ -1,9 +1,9 @@
 import posts from './posts'
 import profile from './profile'
-import users from './users'
+import user from './user'
 
 export {
   posts,
   profile,
-  users
+  user
 }

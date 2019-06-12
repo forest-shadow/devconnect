@@ -1,7 +1,7 @@
 const API_BASE = '/api'
 const PROFILE = API_BASE + '/profile'
 const POSTS = API_BASE + '/posts'
-const USERS = API_BASE + '/users'
+const USER = API_BASE + '/user'
 
 export default {
   POSTS: {
@@ -12,11 +12,11 @@ export default {
     BASE: PROFILE,
     TEST: '/test',
   },
-  USERS: {
-    BASE: USERS,
+  USER: {
+    BASE: USER,
     TEST: '/test',
     REGISTER: '/register',
-    LOGIN: '/login',
+    AUTH: '/auth',
     CURRENT: '/current'
   }
 }
