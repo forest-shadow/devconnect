@@ -7,13 +7,13 @@ import jwt from 'jsonwebtoken'
 import User from '../../../models/User'
 import getGravatarIcon from '../../../services/gravatar'
 
-export const userCredentialValidators = [
+export const userRegisterValidators = [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
 ]
 
-export const userRegistrationMiddleware = async (req: Request, res: Response) => {
+export const userRegisterMiddleware = async (req: Request, res: Response) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {

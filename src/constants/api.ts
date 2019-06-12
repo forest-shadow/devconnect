@@ -17,6 +17,7 @@ export default {
     TEST: '/test',
     REGISTER: '/register',
     AUTH: '/auth',
+    LOGIN: '/login',
     CURRENT: '/current'
   }
 }
