@@ -19,7 +19,7 @@ const RouteConfigs: RouteConfig[] = [
   },
   {
     path: API.PROFILE.BASE,
-    middleware: AppRoutesMiddleware.posts,
+    middleware: AppRoutesMiddleware.profile,
   }
 ]
 

@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken'
 
 // TODO: figure out absolute path usage
 import User from '../../../models/User'
-import getGravatarIcon from '../../../services/gravatar'
 
 export const userLoginValidators = [
   check('email', 'Please include a valid email').isEmail(),

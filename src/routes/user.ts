@@ -1,12 +1,10 @@
 import express from 'express'
-import jwt from 'jsonwebtoken'
-import passport from 'passport'
 
-import API from '../../constants/api'
+import API from '../constants/api'
 
-import { userRegisterValidators, userRegisterMiddleware } from './middleware/register'
+import { userRegisterValidators, userRegisterMiddleware } from './middleware/user/register'
 import { tokenCheckout, userAuthMiddleware } from './middleware/auth'
-import { userLoginValidators, userLoginMiddleware } from './middleware/login'
+import { userLoginValidators, userLoginMiddleware } from './middleware/user/login'
 
 const router = express.Router()
 
@@ -29,16 +27,5 @@ router.post(API.USER.AUTH, tokenCheckout, userAuthMiddleware)
 // @desc    Login User & Return appropriate JWT Token
 // @access  Public
 router.post(API.USER.LOGIN, userLoginValidators, userLoginMiddleware)
-
-// @route   GET api/user/current
-// @desc    Return current user
-// @access  Public
-router.get(API.USER.CURRENT,
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { id, name, email } = req.user
-    res.json({ id, name, email })
-  }
-)
 
 export default router

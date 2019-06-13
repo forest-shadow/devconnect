@@ -11,6 +11,7 @@ export default {
   PROFILE: {
     BASE: PROFILE,
     TEST: '/test',
+    CURRENT: '/current'
   },
   USER: {
     BASE: USER,
@@ -18,6 +19,5 @@ export default {
     REGISTER: '/register',
     AUTH: '/auth',
     LOGIN: '/login',
-    CURRENT: '/current'
   }
 }
