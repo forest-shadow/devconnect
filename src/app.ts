@@ -1,6 +1,5 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import passport from 'passport'
 import path from 'path'
 
 // TODO: think about default config declaration
@@ -17,10 +16,6 @@ connectDB()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(passport.initialize())
-
-import passportConfig from './config/passport'
-passportConfig(passport)
 
 defineRoutes(app)
 
