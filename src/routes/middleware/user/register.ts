@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 // TODO: figure out absolute path usage
-import User from '../../../models/User'
+import UserModel from '../../../models/User'
 import getGravatarIcon from '../../../services/gravatar'
 
 export const userRegisterValidators = [
@@ -22,7 +22,7 @@ export const userRegisterMiddleware = async (req: Request, res: Response) => {
 
   try {
     const { name, email, password } = req.body
-    const user = await User.findOne({ email })
+    const user = await UserModel.findOne({ email })
 
     // see if user exists
     if (user) {
@@ -31,7 +31,7 @@ export const userRegisterMiddleware = async (req: Request, res: Response) => {
       // get users gravatar
       const avatar = getGravatarIcon(email)
 
-      const newUser = new User({ name, email, avatar, password })
+      const newUser = new UserModel({ name, email, avatar, password })
 
       // encrypt password
       const passwordSalt = await bcrypt.genSalt(10)

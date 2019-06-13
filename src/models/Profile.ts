@@ -121,10 +121,10 @@ interface ProfileDocument extends mongoose.Document {
   githubUsername: string,
   experience: [{[index: string]: string|Date|boolean}],
   education: [{[index: string]: string|Date|boolean}],
-  string: [{[index: string]: string}],
+  social: {[index: string]: string},
   date: Date
 }
 
-const Profile = mongoose.model<ProfileDocument>('profile', ProfileSchema)
+const ProfileModel = mongoose.model<ProfileDocument>('profile', ProfileSchema)
 
-export default Profile
+export default ProfileModel

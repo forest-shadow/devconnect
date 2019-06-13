@@ -4,7 +4,7 @@ import { JwtFromRequestFunction, VerifiedCallback } from 'passport-jwt'
 const JwtStrategy = require('passport-jwt').Strategy,
   ExtractJwt = require('passport-jwt').ExtractJwt
 
-const User = mongoose.model('users')
+const User = mongoose.model('user')
 
 
 interface JwtStrategyOptions {

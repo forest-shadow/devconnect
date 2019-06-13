@@ -1,11 +1,10 @@
 import { Request, Response } from 'express'
 
-import Profile from '../../../models/Profile'
-import User from '../../../models/User'
+import ProfileModel from '../../../models/Profile'
 
 export const getCurrentProfileMiddleware = async (req: Request, res: Response) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id })
+    const profile = await ProfileModel.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
 
     if (!profile) {

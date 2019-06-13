@@ -3,6 +3,9 @@ import express from 'express'
 import API from '../constants/api'
 import { tokenCheckout } from './middleware/auth'
 import { getCurrentProfileMiddleware } from './middleware/profile/current'
+import { createProfileValidators, createProfileMiddleware } from './middleware/profile/create'
+import { getAllProfilesMiddleware } from './middleware/profile/getAll'
+import { getProfileByUserIdMiddleware } from './middleware/profile/getByUserId'
 
 
 const router = express.Router()
@@ -16,5 +19,20 @@ router.get(API.PROFILE.TEST, (req, res) => res.json({ msg: 'Profile works!' }))
 // @desc    Get current user's profile
 // @access  Private
 router.post(API.PROFILE.CURRENT, tokenCheckout, getCurrentProfileMiddleware)
+
+// @route   POST api/profile
+// @desc    Create or Update user profile
+// @access  Private
+router.post(['/', API.PROFILE.UPDATE], tokenCheckout, createProfileValidators, createProfileMiddleware)
+
+// @route   GET api/profile
+// @desc    Get all profiles
+// @access  Public
+router.get('/', getAllProfilesMiddleware)
+
+// @route   GET api/profile/user/:user_id
+// @desc    Get profile by user ID
+// @access  Public
+router.get(API.PROFILE.GET_BY_USER_ID, getProfileByUserIdMiddleware)
 
 export default router

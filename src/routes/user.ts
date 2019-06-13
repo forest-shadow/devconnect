@@ -9,9 +9,9 @@ import { userLoginValidators, userLoginMiddleware } from './middleware/user/logi
 const router = express.Router()
 
 // @route   GET api/user/test
-// @desc    Tests users route
+// @desc    Tests user route
 // @access  Public
-router.get(API.USER.TEST, (req, res) => res.json({ msg: 'Users works!' }))
+router.get(API.USER.TEST, (req, res) => res.json({ msg: 'User works!' }))
 
 // @route   POST api/user/register
 // @desc    Register user

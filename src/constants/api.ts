@@ -11,7 +11,9 @@ export default {
   PROFILE: {
     BASE: PROFILE,
     TEST: '/test',
-    CURRENT: '/current'
+    CURRENT: '/current',
+    UPDATE: '/update',
+    GET_BY_USER_ID: '/user/:user_id'
   },
   USER: {
     BASE: USER,

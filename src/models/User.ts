@@ -31,6 +31,6 @@ interface UserDocument extends mongoose.Document {
   date: string
 }
 
-const User = mongoose.model<UserDocument>('users', UserSchema)
+const UserModel = mongoose.model<UserDocument>('user', UserSchema)
 
-export default User
+export default UserModel
