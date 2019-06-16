@@ -1,4 +1,6 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose from 'mongoose'
+
+import { Profile } from '../interfaces/profile'
 
 const ProfileSchema = new mongoose.Schema({
   user: {
@@ -110,20 +112,7 @@ const ProfileSchema = new mongoose.Schema({
   }
 })
 
-interface ProfileDocument extends mongoose.Document {
-  user: Schema.Types.ObjectId,
-  company: string,
-  website: string,
-  location: string,
-  status: string,
-  skills: string,
-  bio: string,
-  githubUsername: string,
-  experience: [{[index: string]: string|Date|boolean}],
-  education: [{[index: string]: string|Date|boolean}],
-  social: {[index: string]: string},
-  date: Date
-}
+interface ProfileDocument extends mongoose.Document, Profile {}
 
 const ProfileModel = mongoose.model<ProfileDocument>('profile', ProfileSchema)
 

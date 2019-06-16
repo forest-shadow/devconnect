@@ -12,6 +12,11 @@ import {
   addExperienceMiddleware,
   deleteExperienceMiddleware
 } from './middleware/profile/experience'
+import {
+  addEducationMiddleware,
+  addEducationValidators,
+  deleteEducationMiddleware
+} from './middleware/profile/education'
 
 
 const router = express.Router()
@@ -55,5 +60,16 @@ router.put(API.PROFILE.EXPERIENCE.ADD, tokenCheckout, addExperienceValidators, a
 // @desc    Delete profile experience
 // @access  Private
 router.delete(API.PROFILE.EXPERIENCE.DELETE_BY_ID, tokenCheckout, deleteExperienceMiddleware)
+
+// @route   PUT api/profile/education
+// @desc    Add profile education
+// @access  Private
+router.put(API.PROFILE.EXPERIENCE.ADD, tokenCheckout, addEducationValidators, addEducationMiddleware)
+
+// @route   DELETE api/profile/education/:education_id
+// @desc    Delete profile education
+// @access  Private
+router.delete(API.PROFILE.EXPERIENCE.DELETE_BY_ID, tokenCheckout, deleteEducationMiddleware)
+
 
 export default router

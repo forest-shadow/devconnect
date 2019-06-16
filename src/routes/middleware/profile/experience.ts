@@ -3,6 +3,7 @@ import { check, validationResult } from 'express-validator/check'
 
 import ProfileModel from '../../../models/Profile'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
+import { Experience } from '../../../interfaces/profile'
 
 export const addExperienceValidators = [
   check('title', 'Title is required').not().isEmpty(),
@@ -18,7 +19,7 @@ export const addExperienceMiddleware = async (req: AuthenticatedUserRequest, res
   }
 
   const { title, company, location, from, to, current, description } = req.body
-  const newExperience = { title, company, location, from, to, current, description }
+  const newExperience: Experience = { title, company, location, from, to, current, description }
 
   try {
     const profile = await ProfileModel.findOne({ user: req.user.id })
