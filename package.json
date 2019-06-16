@@ -27,7 +27,6 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.11",
-    "passport-jwt": "^4.0.0",
     "request": "^2.88.0",
     "validator": "^10.11.0"
   },
@@ -40,8 +39,6 @@
     "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.3.21",
     "@types/node": "^11.10.4",
-    "@types/passport": "^1.0.0",
-    "@types/passport-jwt": "^3.0.1",
     "chokidar": "^2.1.2",
     "chokidar-cli": "^1.2.2",
     "concurrently": "^4.1.0",
