@@ -1,7 +1,7 @@
 import express from 'express'
 
 import API from '../constants/api'
-import { tokenCheckout } from './middleware/auth'
+import { tokenCheckout } from './middleware/tokenCheckout'
 import { getCurrentProfileMiddleware } from './middleware/profile/getCurrent'
 import { createProfileValidators, createProfileMiddleware } from './middleware/profile/create'
 import { getAllProfilesMiddleware } from './middleware/profile/getAll'

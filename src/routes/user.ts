@@ -3,7 +3,8 @@ import express from 'express'
 import API from '../constants/api'
 
 import { userRegisterValidators, userRegisterMiddleware } from './middleware/user/register'
-import { tokenCheckout, userAuthMiddleware } from './middleware/auth'
+import { tokenCheckout } from './middleware/tokenCheckout'
+import { userAuthMiddleware } from './middleware/user/auth'
 import { userLoginValidators, userLoginMiddleware } from './middleware/user/login'
 
 const router = express.Router()

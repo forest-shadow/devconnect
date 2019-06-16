@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-import User from '../../models/User'
-
 export const tokenCheckout = (req: Request, res: Response, next: NextFunction) => {
   // get token from header
   const token = req.header('x-auth-token')
@@ -23,13 +21,3 @@ export const tokenCheckout = (req: Request, res: Response, next: NextFunction) =
   }
 }
 
-export const userAuthMiddleware = async (req: Request, res: Response) => {
-  try {
-    // find user by email; return user without password
-    const user = await User.findById(req.user.id).select('-password')
-    res.json(user)
-  } catch (error) {
-    console.error(error.message)
-    return res.status(500).json({ error: `Unexpected server error.` })
-  }
-}
