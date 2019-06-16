@@ -7,7 +7,11 @@ import { createProfileValidators, createProfileMiddleware } from './middleware/p
 import { getAllProfilesMiddleware } from './middleware/profile/getAll'
 import { getProfileByUserIdMiddleware } from './middleware/profile/getByUserId'
 import { deleteCurrentProfileMiddleware } from './middleware/profile/deleteCurrent'
-import { addExperienceValidators, addExperienceMiddleware } from './middleware/profile/addExperience'
+import {
+  addExperienceValidators,
+  addExperienceMiddleware,
+  deleteExperienceMiddleware
+} from './middleware/profile/experience'
 
 
 const router = express.Router()
@@ -45,6 +49,11 @@ router.delete('/', tokenCheckout, deleteCurrentProfileMiddleware)
 // @route   PUT api/profile/experience
 // @desc    Add profile experience
 // @access  Private
-router.put('/experience', tokenCheckout, addExperienceValidators, addExperienceMiddleware)
+router.put(API.PROFILE.EXPERIENCE.ADD, tokenCheckout, addExperienceValidators, addExperienceMiddleware)
+
+// @route   DELETE api/profile/experience/:experience_id
+// @desc    Delete profile experience
+// @access  Private
+router.delete(API.PROFILE.EXPERIENCE.DELETE_BY_ID, tokenCheckout, deleteExperienceMiddleware)
 
 export default router

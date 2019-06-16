@@ -30,3 +30,17 @@ export const addExperienceMiddleware = async (req: AuthenticatedUserRequest, res
     return res.status(500).send('Server Error')
   }
 }
+
+export const deleteExperienceMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+  try {
+    const profile = await ProfileModel.findOne({ user: req.user.id })
+    const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.experience_id)
+
+    profile.experience.splice(removeIndex, 1)
+    await profile.save()
+    return res.json(profile)
+  } catch (err) {
+    console.error(err.message)
+    return res.status(500).send('Server Error')
+  }
+}
