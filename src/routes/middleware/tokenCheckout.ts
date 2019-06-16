@@ -17,7 +17,7 @@ export const tokenCheckout = (req: Request, res: Response, next: NextFunction) =
     req.user = decoded.user
     next()
   } catch (error) {
-    res.status(401).json( { msg: 'Token is not valid' } )
+    return res.status(401).json( { msg: 'Token is not valid' } )
   }
 }
 

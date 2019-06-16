@@ -1,15 +1,16 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
 import { check, validationResult } from 'express-validator/check'
 
 import ProfileModel from '../../../models/Profile'
 import { Profile, SocialLinks } from '../../../interfaces/profile'
+import { AuthenticatedUserRequest } from '../../../interfaces/request'
 
 export const createProfileValidators = [
   check('status', 'Status is required').not().isEmpty(),
   check('skills', 'Skills is required').not().isEmpty()
 ]
 
-export const createProfileMiddleware = async (req: Request, res: Response) => {
+export const createProfileMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })

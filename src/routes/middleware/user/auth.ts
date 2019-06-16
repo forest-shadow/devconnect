@@ -1,10 +1,8 @@
-import { Request, Response } from 'express'
-import UserModel from '../../../models/User'
-import { User } from '../../../interfaces/user'
+import { Response } from 'express'
 
-interface AuthenticatedUserRequest extends Request {
-  user: User
-}
+import UserModel from '../../../models/User'
+import { AuthenticatedUserRequest } from '../../../interfaces/request'
+
 
 export const userAuthMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
   try {

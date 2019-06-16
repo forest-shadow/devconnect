@@ -1,8 +1,9 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
 
 import ProfileModel from '../../../models/Profile'
+import { AuthenticatedUserRequest } from '../../../interfaces/request'
 
-export const getCurrentProfileMiddleware = async (req: Request, res: Response) => {
+export const getCurrentProfileMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
   try {
     const profile = await ProfileModel.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
