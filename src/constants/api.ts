@@ -2,6 +2,7 @@ const API_BASE = '/api'
 
 const PROFILE = '/profile'
 const PROFILE_EXPERIENCE = '/experience'
+const PROFILE_EDUCATION = '/education'
 const POSTS = '/posts'
 const USER = '/user'
 
@@ -23,6 +24,10 @@ export default {
     EXPERIENCE: {
       ADD: PROFILE_EXPERIENCE,
       DELETE_BY_ID: PROFILE_EXPERIENCE + '/:experience_id'
+    },
+    EDUCATION: {
+      ADD: PROFILE_EDUCATION,
+      DELETE_BY_ID: PROFILE_EDUCATION + '/:education_id'
     }
   },
   USER: {

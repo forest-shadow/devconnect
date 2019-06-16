@@ -64,12 +64,12 @@ router.delete(API.PROFILE.EXPERIENCE.DELETE_BY_ID, tokenCheckout, deleteExperien
 // @route   PUT api/profile/education
 // @desc    Add profile education
 // @access  Private
-router.put(API.PROFILE.EXPERIENCE.ADD, tokenCheckout, addEducationValidators, addEducationMiddleware)
+router.put(API.PROFILE.EDUCATION.ADD, tokenCheckout, addEducationValidators, addEducationMiddleware)
 
 // @route   DELETE api/profile/education/:education_id
 // @desc    Delete profile education
 // @access  Private
-router.delete(API.PROFILE.EXPERIENCE.DELETE_BY_ID, tokenCheckout, deleteEducationMiddleware)
+router.delete(API.PROFILE.EDUCATION.DELETE_BY_ID, tokenCheckout, deleteEducationMiddleware)
 
 
 export default router
