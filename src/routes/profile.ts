@@ -2,10 +2,11 @@ import express from 'express'
 
 import API from '../constants/api'
 import { tokenCheckout } from './middleware/auth'
-import { getCurrentProfileMiddleware } from './middleware/profile/current'
+import { getCurrentProfileMiddleware } from './middleware/profile/getCurrent'
 import { createProfileValidators, createProfileMiddleware } from './middleware/profile/create'
 import { getAllProfilesMiddleware } from './middleware/profile/getAll'
 import { getProfileByUserIdMiddleware } from './middleware/profile/getByUserId'
+import { deleteCurrentProfileMiddleware } from './middleware/profile/deleteCurrent'
 
 
 const router = express.Router()
@@ -34,5 +35,10 @@ router.get('/', getAllProfilesMiddleware)
 // @desc    Get profile by user ID
 // @access  Public
 router.get(API.PROFILE.GET_BY_USER_ID, getProfileByUserIdMiddleware)
+
+// @route   DELETE api/profile
+// @desc    Delete current profile, related user & posts
+// @access  Private
+router.delete('/', tokenCheckout, deleteCurrentProfileMiddleware)
 
 export default router
