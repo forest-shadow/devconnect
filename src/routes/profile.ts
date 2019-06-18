@@ -22,11 +22,6 @@ import { getUserReposMiddleware } from './middleware/profile/github'
 
 const router = express.Router()
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-router.get(API.PROFILE.TEST, (req, res) => res.json({ msg: 'Profile works!' }))
-
 // @route   POST api/profile/current
 // @desc    Get current user's profile
 // @access  Private
