@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { User } from "../interfaces/user";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -23,13 +24,7 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-interface UserDocument extends mongoose.Document {
-  name: string,
-  email: string,
-  password: string,
-  avatar: string,
-  date: string
-}
+interface UserDocument extends mongoose.Document, User {}
 
 const UserModel = mongoose.model<UserDocument>('user', UserSchema)
 
