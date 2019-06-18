@@ -39,6 +39,7 @@
     "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.3.21",
     "@types/node": "^11.10.4",
+    "@types/request": "^2.48.1",
     "chokidar": "^2.1.2",
     "chokidar-cli": "^1.2.2",
     "concurrently": "^4.1.0",

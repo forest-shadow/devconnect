@@ -28,6 +28,9 @@ export default {
     EDUCATION: {
       ADD: PROFILE_EDUCATION,
       DELETE_BY_ID: PROFILE_EDUCATION + '/:education_id'
+    },
+    GITHUB: {
+      GET_USER_REPOS: '/github/:username'
     }
   },
   USER: {

@@ -17,6 +17,7 @@ import {
   addEducationValidators,
   deleteEducationMiddleware
 } from './middleware/profile/education'
+import { getUserReposMiddleware } from './middleware/profile/github'
 
 
 const router = express.Router()
@@ -70,6 +71,11 @@ router.put(API.PROFILE.EDUCATION.ADD, tokenCheckout, addEducationValidators, add
 // @desc    Delete profile education
 // @access  Private
 router.delete(API.PROFILE.EDUCATION.DELETE_BY_ID, tokenCheckout, deleteEducationMiddleware)
+
+// @route   GET api/profile/github/:username
+// @desc    Get user repos from Github
+// @access  Public
+router.get(API.PROFILE.GITHUB.GET_USER_REPOS, getUserReposMiddleware)
 
 
 export default router
