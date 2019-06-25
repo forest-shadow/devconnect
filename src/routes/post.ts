@@ -4,6 +4,7 @@ import API from '../constants/api'
 import { createPostValidators, createPostMiddleware } from './middleware/post/create'
 import { getPostsMiddleware, getPostMiddleware } from './middleware/post/get'
 import { deletePostMiddleware } from './middleware/post/delete'
+import { likePostMiddleware, unlikePostMiddleware } from './middleware/post/like'
 import { tokenCheckout } from './middleware/tokenCheckout'
 
 const router = express.Router()
@@ -27,5 +28,15 @@ router.get(API.POST.GET_BY_ID, tokenCheckout, getPostMiddleware)
 // @desc    Delete post by id
 // @access  Private
 router.delete(API.POST.DELETE, tokenCheckout, deletePostMiddleware)
+
+// @route   PUT api/post/:post_id/like
+// @desc    Like a post
+// @access  Private
+router.put(API.POST.LIKE, tokenCheckout, likePostMiddleware)
+
+// @route   PUT api/post/:post_id/unlike
+// @desc    Unlike a post
+// @access  Private
+router.put(API.POST.UNLIKE, tokenCheckout, unlikePostMiddleware)
 
 export default router

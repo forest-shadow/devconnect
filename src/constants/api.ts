@@ -14,7 +14,9 @@ export default {
   POST: {
     BASE: POST_BASE,
     GET_BY_ID: '/:post_id',
-    DELETE: '/:post_id'
+    DELETE: '/:post_id',
+    LIKE: '/:post_id/like',
+    UNLIKE: '/:post_id/unlike'
   },
   PROFILE: {
     BASE: PROFILE_BASE,
