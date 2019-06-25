@@ -13,11 +13,11 @@ const USER_BASE = API_BASE + USER
 export default {
   POST: {
     BASE: POST_BASE,
-    TEST: '/test',
+    GET_BY_ID: '/:post_id',
+    DELETE: '/:post_id'
   },
   PROFILE: {
     BASE: PROFILE_BASE,
-    TEST: '/test',
     CURRENT: '/current',
     UPDATE: '/update',
     GET_BY_USER_ID: '/user/:user_id',
@@ -35,7 +35,6 @@ export default {
   },
   USER: {
     BASE: USER_BASE,
-    TEST: '/test',
     REGISTER: '/register',
     AUTH: '/auth',
     LOGIN: '/login',

@@ -1,13 +1,31 @@
 import express from 'express'
 
+import API from '../constants/api'
 import { createPostValidators, createPostMiddleware } from './middleware/post/create'
+import { getPostsMiddleware, getPostMiddleware } from './middleware/post/get'
+import { deletePostMiddleware } from './middleware/post/delete'
 import { tokenCheckout } from './middleware/tokenCheckout'
 
 const router = express.Router()
 
-// @route   POST api/posts
+// @route   POST api/post
 // @desc    Create a post
 // @access  Public
 router.post('/', tokenCheckout, createPostValidators, createPostMiddleware)
+
+// @route   GET api/post
+// @desc    Get all posts
+// @access  Private
+router.get('/', tokenCheckout, getPostsMiddleware)
+
+// @route   GET api/post/:post_id
+// @desc    Get post by id
+// @access  Private
+router.get(API.POST.GET_BY_ID, tokenCheckout, getPostMiddleware)
+
+// @route   DELETE api/post/:post_id
+// @desc    Delete post by id
+// @access  Private
+router.delete(API.POST.DELETE, tokenCheckout, deletePostMiddleware)
 
 export default router
