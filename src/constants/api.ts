@@ -3,16 +3,16 @@ const API_BASE = '/api'
 const PROFILE = '/profile'
 const PROFILE_EXPERIENCE = '/experience'
 const PROFILE_EDUCATION = '/education'
-const POSTS = '/posts'
+const POST = '/post'
 const USER = '/user'
 
 const PROFILE_BASE = API_BASE + PROFILE
-const POSTS_BASE = API_BASE + POSTS
+const POST_BASE = API_BASE + POST
 const USER_BASE = API_BASE + USER
 
 export default {
-  POSTS: {
-    BASE: POSTS_BASE,
+  POST: {
+    BASE: POST_BASE,
     TEST: '/test',
   },
   PROFILE: {

@@ -24,9 +24,10 @@ const UserSchema = new mongoose.Schema({
 })
 
 interface UserDocument extends mongoose.Document {
-  name: string,
-  email: string,
-  avatar: string,
+  name: string
+  email: string
+  password: string
+  avatar: string
   date: string
 }
 
