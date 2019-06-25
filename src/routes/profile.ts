@@ -2,10 +2,12 @@ import express from 'express'
 
 import API from '../constants/api'
 import { tokenCheckout } from './middleware/tokenCheckout'
-import { getCurrentProfileMiddleware } from './middleware/profile/getCurrent'
+import {
+  getCurrentProfileMiddleware,
+  getAllProfilesMiddleware,
+  getProfileByUserIdMiddleware
+} from './middleware/profile/get'
 import { createProfileValidators, createProfileMiddleware } from './middleware/profile/create'
-import { getAllProfilesMiddleware } from './middleware/profile/getAll'
-import { getProfileByUserIdMiddleware } from './middleware/profile/getByUserId'
 import { deleteCurrentProfileMiddleware } from './middleware/profile/deleteCurrent'
 import {
   addExperienceValidators,
