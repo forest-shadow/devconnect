@@ -7,7 +7,7 @@ export interface Post {
   name: string
   avatar: string
   likes: [PostLike]
-  comments: PostComment
+  comments: [PostComment]
   date: Date
 }
 
@@ -16,11 +16,12 @@ interface PostLike {
 }
 
 interface PostComment {
+  id?: string
   user: PostUser
   text: string
   name: string
   avatar: string
-  date: Date
+  date?: Date
 }
 
 declare type PostUser = string|User|Schema.Types.ObjectId

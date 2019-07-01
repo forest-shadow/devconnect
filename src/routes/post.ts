@@ -5,6 +5,11 @@ import { createPostValidators, createPostMiddleware } from './middleware/post/cr
 import { getPostsMiddleware, getPostMiddleware } from './middleware/post/get'
 import { deletePostMiddleware } from './middleware/post/delete'
 import { likePostMiddleware, unlikePostMiddleware } from './middleware/post/like'
+import {
+  createCommentValidators,
+  createCommentMiddleware,
+  deleteCommentMiddleware
+} from './middleware/post/comment'
 import { tokenCheckout } from './middleware/tokenCheckout'
 
 const router = express.Router()
@@ -32,11 +37,21 @@ router.delete(API.POST.DELETE, tokenCheckout, deletePostMiddleware)
 // @route   PUT api/post/:post_id/like
 // @desc    Like a post
 // @access  Private
-router.put(API.POST.LIKE, tokenCheckout, likePostMiddleware)
+router.put(API.POST.ASSESS.LIKE, tokenCheckout, likePostMiddleware)
 
 // @route   PUT api/post/:post_id/unlike
 // @desc    Unlike a post
 // @access  Private
-router.put(API.POST.UNLIKE, tokenCheckout, unlikePostMiddleware)
+router.put(API.POST.ASSESS.UNLIKE, tokenCheckout, unlikePostMiddleware)
+
+// @route   POST api/post/:post_id/comment
+// @desc    Comment on a post
+// @access  Private
+router.post(API.POST.COMMENT.ADD, tokenCheckout, createCommentValidators, createCommentMiddleware)
+
+// @route   Delete api/post/:post_id/comment/:comment_id
+// @desc    Delete comment on a post
+// @access  Private
+router.delete(API.POST.COMMENT.DELETE, tokenCheckout, deleteCommentMiddleware)
 
 export default router
