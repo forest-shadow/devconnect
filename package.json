@@ -4,8 +4,10 @@
   "description": "Social network for developers",
   "main": "dist/server.js",
   "scripts": {
-    "start": "yarn run serve",
-    "serve": "node dist/server.js",
+    "start": "yarn run server",
+    "server": "node dist/server.js",
+    "client": "npm start --prefix client",
+    "dev-server": "concurrently -k -p \"[{name}]\" -n \"Server,Client\" -c \"cyan.bold,green.bold\" \"yarn run server\" \"yarn run client\"",
     "build": "yarn run build-ts",
     "build-ts": "tsc",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,TSlint\" -c \"cyan.bold,green.bold,purple.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run watch-tslint\"",
