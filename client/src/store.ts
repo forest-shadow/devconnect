@@ -3,14 +3,17 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
 import rootReducer from './reducers'
-import { AlertState, getDefaultAlertState } from "./reducers/alert";
+import { AlertState, initialAlertState } from './reducers/alert'
+import { AuthState, initialAuthState } from './reducers/auth'
 
 export interface AppState {
   alert: AlertState
+  auth: AuthState
 }
 
-const initialState = {
-  alert: getDefaultAlertState()
+const initialState: AppState = {
+  alert: initialAlertState,
+  auth: initialAuthState
 }
 
 const middleware = [thunk]

@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { setAlert } from '../../actions/alert'
 import ROUTES from '../../constants/routes'
+import { setAlert } from '../../actions/alert'
+import { register } from '../../actions/auth'
 
 interface RegisterProps {
   setAlert: CallableFunction
+  register: CallableFunction
 }
 
-const Register: React.FC<RegisterProps> = ({ setAlert }) => {
+const Register: React.FC<RegisterProps> = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +29,7 @@ const Register: React.FC<RegisterProps> = ({ setAlert }) => {
     if (password !== password2) {
       setAlert('Password do not match', 'danger')
     } else {
-      console.log(formData)
+      register({ name, email, password })
     }
   }
 
@@ -45,7 +47,6 @@ const Register: React.FC<RegisterProps> = ({ setAlert }) => {
             name="name"
             value={name}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -68,7 +69,6 @@ const Register: React.FC<RegisterProps> = ({ setAlert }) => {
             name="password"
             value={password}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -78,7 +78,6 @@ const Register: React.FC<RegisterProps> = ({ setAlert }) => {
             name="password2"
             value={password2}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -90,4 +89,7 @@ const Register: React.FC<RegisterProps> = ({ setAlert }) => {
   )
 }
 
-export default connect(null, { setAlert })(Register)
+export default connect(
+  null,
+  { setAlert, register }
+)(Register)
