@@ -5,20 +5,24 @@ const PROFILE_EXPERIENCE = PROFILE + '/experience'
 const PROFILE_EDUCATION = PROFILE + '/education'
 
 const POST = API_BASE + '/post'
+const appendBaseUrl = (base: string) => (url: string) => `${base}/${url}`
+const appendPostUrl = appendBaseUrl(POST)
+const getPostIdUrl = (postId: string) => appendPostUrl(postId)
+const getPostCommentUrl = (postId: string) => getPostIdUrl(postId) + '/comment'
+
 const USER = API_BASE + '/user'
 
 export default {
   POST: {
-    GET: (postId: string) => `${POST}/${postId}`,
-    DELETE: (postId: string) => `${POST}/${postId}`,
+    GET: getPostIdUrl,
+    DELETE: getPostIdUrl,
     ASSESS: {
-      LIKE: (postId: string) => `${POST}/${postId}/like`,
-      UNLIKE: (postId: string) => `${POST}/${postId}/unlike`
+      LIKE: (postId: string) => getPostIdUrl(postId) + '/like',
+      UNLIKE: (postId: string) => getPostIdUrl(postId) + '/unlike'
     },
     COMMENT: {
-      ADD: (postId: string) => `${POST}/${postId}/comment`,
-      DELETE: (postId: string, commentId: string) =>
-        `${POST}/${postId}/comment/${commentId}`
+      ADD: getPostCommentUrl,
+      DELETE: (postId: string, commentId: string) => `${getPostCommentUrl(postId)}/${commentId}`
     }
   },
   PROFILE: {
