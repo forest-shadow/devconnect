@@ -14,6 +14,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAIL = 'AUTH_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const LOGOUT = 'LOGOUT'
 
 export const authSuccess = () => async (
   dispatch: ThunkDispatch<AppState, undefined, AnyAction>
@@ -114,4 +115,10 @@ export const login = (
       type: LOGIN_FAIL
     })
   }
+}
+
+export const logout: ThunkResult<void> = () => (
+  dispatch: ThunkDispatch<AppState, undefined, AnyAction>
+) => {
+  dispatch({ type: LOGOUT })
 }
