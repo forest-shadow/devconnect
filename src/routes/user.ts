@@ -14,10 +14,10 @@ const router = express.Router()
 // @access  Public
 router.post(API.USER.REGISTER, userRegisterValidators, userRegisterMiddleware)
 
-// @route   POST api/user/auth
+// @route   GET api/user/auth
 // @desc    Authenticate User & Return appropriate JWT Token
 // @access  Public
-router.post(API.USER.AUTH, tokenCheckout, userAuthMiddleware)
+router.get(API.USER.AUTH, tokenCheckout, userAuthMiddleware)
 
 // @route   POST api/user/login
 // @desc    Login User & Return appropriate JWT Token
