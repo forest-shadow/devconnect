@@ -2,21 +2,24 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   AUTH_SUCCESS,
-  AUTH_FAIL
+  AUTH_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
 } from '../actions/auth'
 import { BaseAction } from '../interfaces/action'
+import { IUser } from "../interfaces/user";
 
 export interface AuthState {
   [index: string]: any
   token: string | null
-  isAuthenticated: boolean | null
+  isAuthenticated: boolean
   loading: boolean
-  user: string | null
+  user: IUser | null
 }
 
 export const initialAuthState: AuthState = {
   token: localStorage.getItem('token'),
-  isAuthenticated: null,
+  isAuthenticated: false,
   loading: true,
   user: null
 }
@@ -35,6 +38,7 @@ export default function(
         user: payload
       }
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token)
       return {
         ...state,
@@ -44,6 +48,7 @@ export default function(
       }
     case REGISTER_FAIL:
     case AUTH_FAIL:
+    case LOGIN_FAIL:
       localStorage.removeItem('token')
       return {
         ...state,

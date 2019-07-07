@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import ROUTES from '../../constants/routes'
 import { setAlert } from '../../actions/alert'
 import { register } from '../../actions/auth'
+import { AppState } from '../../store'
 
 interface RegisterProps {
   setAlert: CallableFunction
   register: CallableFunction
+  isAuthenticated: boolean
 }
 
-const Register: React.FC<RegisterProps> = ({ setAlert, register }) => {
+const Register: React.FC<RegisterProps> = ({
+  setAlert,
+  register,
+  isAuthenticated
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,6 +37,10 @@ const Register: React.FC<RegisterProps> = ({ setAlert, register }) => {
     } else {
       register({ name, email, password })
     }
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to={ROUTES.DASHBOARD} />
   }
 
   return (
@@ -89,7 +99,11 @@ const Register: React.FC<RegisterProps> = ({ setAlert, register }) => {
   )
 }
 
+const mapStateToProps = (state: AppState) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   { setAlert, register }
 )(Register)

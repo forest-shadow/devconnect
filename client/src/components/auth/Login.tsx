@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
+import { login } from '../../actions/auth'
 import ROUTES from '../../constants/routes'
+import { AppState } from '../../store'
 
-const Login = () => {
+interface LoginProps {
+  login: CallableFunction
+  isAuthenticated: boolean
+}
+
+const Login: React.FC<LoginProps> = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -16,7 +24,11 @@ const Login = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
+    login(email, password)
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to={ROUTES.DASHBOARD} />
   }
 
   return (
@@ -54,4 +66,11 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapStateToProps = (state: AppState) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login)

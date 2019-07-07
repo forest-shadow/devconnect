@@ -12,6 +12,8 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAIL = 'AUTH_FAIL'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAIL = 'LOGIN_FAIL'
 
 export const authSuccess = () => async (
   dispatch: ThunkDispatch<AppState, undefined, AnyAction>
@@ -19,8 +21,6 @@ export const authSuccess = () => async (
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
-
-  console.warn(localStorage.token)
 
   try {
     const res = await axios.get(API.USER.AUTH)
@@ -35,8 +35,6 @@ export const authSuccess = () => async (
       type: AUTH_FAIL
     })
   }
-
-  console.warn(localStorage.token)
 }
 
 export const register = ({
@@ -63,6 +61,8 @@ export const register = ({
       type: REGISTER_SUCCESS,
       payload: res.data
     })
+
+    dispatch(authSuccess())
   } catch (err) {
     const errors = err.response.data.errors
 
@@ -74,6 +74,44 @@ export const register = ({
 
     dispatch({
       type: REGISTER_FAIL
+    })
+  }
+}
+
+export const login = (
+  email: string,
+  password: string
+): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, undefined, AnyAction>
+) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  const body = JSON.stringify({ email, password })
+
+  try {
+    const res = await axios.post(API.USER.LOGIN, body, config)
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    })
+
+    dispatch(authSuccess())
+  } catch (err) {
+    const errors = err.response.data.errors
+
+    if (errors) {
+      errors.forEach((error: { msg: string }) => {
+        dispatch(setAlert(error.msg, 'danger'))
+      })
+    }
+
+    dispatch({
+      type: LOGIN_FAIL
     })
   }
 }
