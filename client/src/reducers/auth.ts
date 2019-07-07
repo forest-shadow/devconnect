@@ -1,4 +1,9 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL } from '../actions/auth'
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  AUTH_SUCCESS,
+  AUTH_FAIL
+} from '../actions/auth'
 import { BaseAction } from '../interfaces/action'
 
 export interface AuthState {
@@ -22,6 +27,13 @@ export default function(
 ) {
   const { type, payload } = action
   switch (type) {
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload
+      }
     case REGISTER_SUCCESS:
       localStorage.setItem('token', payload.token)
       return {
@@ -31,6 +43,7 @@ export default function(
         loading: false
       }
     case REGISTER_FAIL:
+    case AUTH_FAIL:
       localStorage.removeItem('token')
       return {
         ...state,

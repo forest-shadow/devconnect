@@ -22,7 +22,8 @@ export default {
     },
     COMMENT: {
       ADD: getPostCommentUrl,
-      DELETE: (postId: string, commentId: string) => `${getPostCommentUrl(postId)}/${commentId}`
+      DELETE: (postId: string, commentId: string) =>
+        `${getPostCommentUrl(postId)}/${commentId}`
     }
   },
   PROFILE: {
