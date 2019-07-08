@@ -31,7 +31,11 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path={ROUTES.REGISTER} component={Register} />
-              <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
+              <PrivateRoute
+                exact
+                path={ROUTES.DASHBOARD}
+                component={Dashboard}
+              />
             </Switch>
           </section>
         </>

@@ -6,6 +6,7 @@ import { IAlert } from '../interfaces/alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
 
+// TODO: rename action types as `ACTION-NAME_ACTION-TYPE`
 export const SET_ALERT = 'SET_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
 

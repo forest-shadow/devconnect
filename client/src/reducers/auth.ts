@@ -8,7 +8,7 @@ import {
   LOGOUT
 } from '../actions/auth'
 import { BaseAction } from '../interfaces/action'
-import { IUser } from "../interfaces/user";
+import { IUser } from '../interfaces/user'
 
 export interface AuthState {
   [index: string]: any

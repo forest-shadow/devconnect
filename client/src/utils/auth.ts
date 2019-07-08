@@ -18,5 +18,5 @@ export const loadUser = () => {
     setAuthToken(localStorage.token)
   }
 
-  (store.dispatch as ThunkDispatch<AppState, void, AnyAction>)(authSuccess())
+  ;(store.dispatch as ThunkDispatch<AppState, void, AnyAction>)(authSuccess())
 }

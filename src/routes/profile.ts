@@ -24,10 +24,10 @@ import { getUserReposMiddleware } from './middleware/profile/github'
 
 const router = express.Router()
 
-// @route   POST api/profile/current
+// @route   GET api/profile/current
 // @desc    Get current user's profile
 // @access  Private
-router.post(API.PROFILE.CURRENT, tokenCheckout, getCurrentProfileMiddleware)
+router.get(API.PROFILE.CURRENT, tokenCheckout, getCurrentProfileMiddleware)
 
 // @route   POST api/profile
 // @desc    Create or Update user profile
