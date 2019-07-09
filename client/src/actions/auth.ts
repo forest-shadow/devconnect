@@ -7,6 +7,7 @@ import { setAlert } from './alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
 import { setAuthToken } from '../utils/auth'
+import { PROFILE_CLEAR } from "./profile";
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
@@ -120,5 +121,6 @@ export const login = (
 export const logout: ThunkResult<void> = () => (
   dispatch: ThunkDispatch<AppState, undefined, AnyAction>
 ) => {
+  dispatch({ type: PROFILE_CLEAR })
   dispatch({ type: LOGOUT })
 }

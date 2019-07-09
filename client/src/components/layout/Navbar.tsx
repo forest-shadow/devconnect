@@ -19,7 +19,10 @@ const Navbar: React.FC<NavbarProps> = ({
   const authLinks = (
     <ul>
       <li>
-        <Link to="dashboard.html">Dashboard</Link>
+        <Link to={ROUTES.DASHBOARD}>
+          <i className="fas fa-user"></i>{' '}
+          <span className="hide-sm">Dashboard</span>
+        </Link>
       </li>
       <li>
         <Link onClick={() => logout()} to="/">

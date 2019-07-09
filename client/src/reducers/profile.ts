@@ -1,12 +1,12 @@
 import { IProfile } from '../interfaces/profile'
 import { BaseAction } from '../interfaces/action'
-import { PROFILE_GET, PROFILE_ERROR } from '../actions/profile'
+import { PROFILE_GET, PROFILE_ERROR, PROFILE_CLEAR } from '../actions/profile'
 
 export interface ProfileState {
-  profile: IProfile | null,
-  profiles: IProfile[],
-  repos: [],
-  loading: boolean,
+  profile: IProfile | null
+  profiles: IProfile[]
+  repos: any
+  loading: boolean
   error: any
 }
 
@@ -32,6 +32,13 @@ export default function(state = initialProfileState, action: BaseAction) {
       return {
         ...state,
         error: payload,
+        loading: false
+      }
+    case PROFILE_CLEAR:
+      return {
+        ...state,
+        profile: null,
+        repos: [],
         loading: false
       }
     default:

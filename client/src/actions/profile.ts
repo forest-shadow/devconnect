@@ -8,6 +8,7 @@ import { AppState } from '../store'
 
 export const PROFILE_GET = 'PROFILE_GET'
 export const PROFILE_ERROR = 'PROFILE_ERROR'
+export const PROFILE_CLEAR = 'PROFILE_CLEAR'
 
 export const getCurrentProfile = (): ThunkResult<void> => async (
   dispatch: ThunkDispatch<AppState, undefined, AnyAction>
