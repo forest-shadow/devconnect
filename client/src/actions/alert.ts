@@ -2,7 +2,7 @@ import uuid from 'uuid'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { IAlert } from '../interfaces/alert'
+import { IAlert, AlertType } from '../interfaces/alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
 
@@ -12,7 +12,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT'
 
 export const setAlert = (
   message: string,
-  type: string,
+  type: AlertType,
   timeout = 5000
 ): ThunkResult<void> => (
   dispatch: ThunkDispatch<AppState, undefined, Action<any>>

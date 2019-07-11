@@ -1,6 +1,28 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+
 import { HTMLFormInputElements } from '../../interfaces/form'
+import { createProfile } from '../../actions/profile'
+
+export interface ProfileCreateForm {
+  company: string
+  website: string
+  location: string
+  status: string
+  skills: string
+  githubusername: string
+  bio: string
+  twitter: string
+  facebook: string
+  linkedin: string
+  youtube: string
+  instagram: string
+}
+
+interface Props extends RouteComponentProps {
+  createProfile: CallableFunction
+}
 
 const initialState = {
   company: '',
@@ -17,7 +39,7 @@ const initialState = {
   instagram: ''
 }
 
-const ProfileCreate = () => {
+const ProfileCreate: React.FC<Props> = ({ createProfile, history }) => {
   const [formData, setFormData] = useState(initialState)
   const {
     company,
@@ -39,6 +61,11 @@ const ProfileCreate = () => {
   const onChange = (e: React.FormEvent<HTMLFormInputElements>) =>
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value })
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    createProfile(formData, history)
+  }
+
   return (
     <>
       <h1 className="large text-primary">Create Your Profile</h1>
@@ -47,7 +74,7 @@ const ProfileCreate = () => {
         your profile stand out
       </p>
       <small> * = required field </small>
-      <form className="form">
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={e => onChange(e)}>
             <option value="0">* Select Professional Status</option>
@@ -214,4 +241,7 @@ const ProfileCreate = () => {
   )
 }
 
-export default connect()(ProfileCreate)
+export default connect(
+  null,
+  { createProfile }
+)(withRouter(ProfileCreate))

@@ -1,5 +1,7 @@
 export interface IAlert {
   id?: string
-  type: string
+  type: AlertType
   message: string
 }
+
+export type AlertType = 'danger' | 'success'

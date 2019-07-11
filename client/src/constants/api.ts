@@ -27,6 +27,7 @@ export default {
     }
   },
   PROFILE: {
+    BASE: PROFILE,
     CURRENT: PROFILE + '/current',
     UPDATE: PROFILE + '/update',
     GET: (userId: string) => `${PROFILE}/user/${userId}`,
