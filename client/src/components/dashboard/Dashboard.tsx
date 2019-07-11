@@ -37,7 +37,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       ) : (
         <>
           <p>You have not yet setup a profile, please add some info</p>
-          <Link className="btn btn-primary my-1" to={ROUTES.PROFILE_CREATE}>
+          <Link className="btn btn-primary my-1" to={ROUTES.PROFILE.CREATE}>
             Create Profile
           </Link>
         </>

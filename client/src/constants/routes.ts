@@ -1,6 +1,11 @@
+const PROFILE = '/profile'
+
 export default {
   REGISTER: '/register',
   LOGIN: '/login',
   DASHBOARD: '/dashboard',
-  PROFILE_CREATE: '/create-profile'
+  PROFILE: {
+    ROOT: PROFILE,
+    CREATE: PROFILE + '/create'
+  }
 }

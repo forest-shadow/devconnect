@@ -1,0 +1,1 @@
+export type HTMLFormInputElements = HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement

@@ -14,6 +14,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 import './App.css'
+import ProfileCreate from './components/profile/ProfileCreate'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -35,6 +36,11 @@ const App: React.FC = () => {
                 exact
                 path={ROUTES.DASHBOARD}
                 component={Dashboard}
+              />
+              <PrivateRoute
+                exact
+                path={ROUTES.PROFILE.CREATE}
+                component={ProfileCreate}
               />
             </Switch>
           </section>
