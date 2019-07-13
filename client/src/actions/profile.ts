@@ -5,14 +5,11 @@ import { History } from 'history'
 
 import API from '../constants/api'
 import ROUTES from '../constants/routes'
+import { PROFILE_GET, PROFILE_ERROR } from './types'
 import { ThunkResult } from '../interfaces/action'
 import { AppState } from '../store'
 import { ProfileCreateForm } from '../components/profile/ProfileCreate'
 import { setAlert } from './alert'
-
-export const PROFILE_GET = 'PROFILE_GET'
-export const PROFILE_ERROR = 'PROFILE_ERROR'
-export const PROFILE_CLEAR = 'PROFILE_CLEAR'
 
 export const getCurrentProfile = (): ThunkResult<void> => async (
   dispatch: ThunkDispatch<AppState, void, AnyAction>

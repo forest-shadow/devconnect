@@ -2,20 +2,22 @@ import axios from 'axios'
 import { AnyAction } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  PROFILE_CLEAR
+} from './types'
 import API from '../constants/api'
 import { setAlert } from './alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
 import { setAuthToken } from '../utils/auth'
-import { getCurrentProfile, PROFILE_CLEAR } from './profile'
-
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-export const REGISTER_FAIL = 'REGISTER_FAIL'
-export const AUTH_SUCCESS = 'AUTH_SUCCESS'
-export const AUTH_FAIL = 'AUTH_FAIL'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAIL = 'LOGIN_FAIL'
-export const LOGOUT = 'LOGOUT'
+import { getCurrentProfile } from './profile'
 
 export const authSuccess = () => async (
   dispatch: ThunkDispatch<AppState, undefined, AnyAction>

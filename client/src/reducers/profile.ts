@@ -1,6 +1,6 @@
 import { IProfile } from '../interfaces/profile'
 import { BaseAction } from '../interfaces/action'
-import { PROFILE_GET, PROFILE_ERROR, PROFILE_CLEAR } from '../actions/profile'
+import { PROFILE_GET, PROFILE_ERROR, PROFILE_CLEAR } from '../actions/types'
 
 export interface ProfileState {
   profile: IProfile | null

@@ -2,13 +2,10 @@ import uuid from 'uuid'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import { ALERT_SET, ALERT_REMOVE } from './types'
 import { IAlert, AlertType } from '../interfaces/alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
-
-// TODO: rename action types as `ACTION-NAME_ACTION-TYPE`
-export const SET_ALERT = 'SET_ALERT'
-export const REMOVE_ALERT = 'REMOVE_ALERT'
 
 export const setAlert = (
   message: string,
@@ -19,9 +16,9 @@ export const setAlert = (
 ) => {
   const id: string = uuid.v4()
   dispatch({
-    type: SET_ALERT,
+    type: ALERT_SET,
     payload: { message, type, id } as IAlert
   })
 
-  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout)
+  setTimeout(() => dispatch({ type: ALERT_REMOVE, payload: id }), timeout)
 }

@@ -6,7 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT
-} from '../actions/auth'
+} from '../actions/types'
 import { BaseAction } from '../interfaces/action'
 import { IUser } from '../interfaces/user'
 

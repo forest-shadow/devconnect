@@ -1,4 +1,4 @@
-import { SET_ALERT, REMOVE_ALERT } from '../actions/alert'
+import { ALERT_SET, ALERT_REMOVE } from '../actions/types'
 import { IAlert } from '../interfaces/alert'
 import { BaseAction } from '../interfaces/action'
 
@@ -12,9 +12,9 @@ export default function(
 ) {
   const { type, payload } = action
   switch (type) {
-    case SET_ALERT:
+    case ALERT_SET:
       return [...state, payload as IAlert]
-    case REMOVE_ALERT:
+    case ALERT_REMOVE:
       return state.filter((alert: IAlert) => alert.id !== (payload as string))
     default:
       return state
