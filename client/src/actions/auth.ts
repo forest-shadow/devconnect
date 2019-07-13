@@ -7,7 +7,7 @@ import { setAlert } from './alert'
 import { AppState } from '../store'
 import { ThunkResult } from '../interfaces/action'
 import { setAuthToken } from '../utils/auth'
-import { PROFILE_CLEAR } from './profile'
+import { getCurrentProfile, PROFILE_CLEAR } from './profile'
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
@@ -103,6 +103,7 @@ export const login = (
     })
 
     dispatch(authSuccess())
+    dispatch(getCurrentProfile())
   } catch (err) {
     const errors = err.response.data.errors
 

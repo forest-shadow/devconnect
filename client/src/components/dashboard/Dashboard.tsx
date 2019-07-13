@@ -1,29 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import ROUTES from '../../constants/routes'
 import { AppState } from '../../store'
-import { getCurrentProfile } from '../../actions/profile'
 import { AuthState } from '../../reducers/auth'
 import { ProfileState } from '../../reducers/profile'
-import ROUTES from '../../constants/routes'
 
 import Spinner from '../layout/Spinner'
+import DashboardActions from './DashboardActions'
 
 interface DashboardProps {
   profile: ProfileState
   auth: AuthState
-  getCurrentProfile: CallableFunction
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
-  getCurrentProfile,
   auth: { user },
   profile: { profile, loading }
 }) => {
-  useEffect(() => {
-    getCurrentProfile()
-    // eslint-disable-next-line
-  }, [])
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -33,7 +28,9 @@ const Dashboard: React.FC<DashboardProps> = ({
         <i className="fas fa-user"></i> {user && user.name}
       </p>
       {profile !== null ? (
-        <>has</>
+        <>
+          <DashboardActions />
+        </>
       ) : (
         <>
           <p>You have not yet setup a profile, please add some info</p>
@@ -52,6 +49,5 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 export default connect(
-  mapStateToProps,
-  { getCurrentProfile }
+  mapStateToProps
 )(Dashboard)

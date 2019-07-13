@@ -4,6 +4,7 @@ import { AnyAction } from 'redux'
 
 import store, { AppState } from '../store'
 import { authSuccess } from '../actions/auth'
+import { getCurrentProfile } from '../actions/profile'
 
 export const setAuthToken = (token: string) => {
   if (token) {
@@ -19,4 +20,7 @@ export const loadUser = () => {
   }
 
   ;(store.dispatch as ThunkDispatch<AppState, void, AnyAction>)(authSuccess())
+  ;(store.dispatch as ThunkDispatch<AppState, void, AnyAction>)(
+    getCurrentProfile()
+  )
 }

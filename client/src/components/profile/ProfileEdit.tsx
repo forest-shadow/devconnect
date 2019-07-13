@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom'
 
 import ROUTES from '../../constants/routes'
 import { HTMLFormInputElements } from '../../interfaces/form'
 import { createProfile } from '../../actions/profile'
+import { AppState } from '../../store'
+import { ProfileState } from '../../reducers/profile'
 
-export interface ProfileCreateForm {
+export interface ProfileEditForm {
   company: string
   website: string
   location: string
@@ -23,9 +25,10 @@ export interface ProfileCreateForm {
 
 interface Props extends RouteComponentProps {
   createProfile: CallableFunction
+  profileState: ProfileState
 }
 
-const initialState: ProfileCreateForm = {
+const initialState: ProfileEditForm = {
   company: '',
   website: '',
   location: '',
@@ -40,7 +43,11 @@ const initialState: ProfileCreateForm = {
   instagram: ''
 }
 
-const ProfileCreate: React.FC<Props> = ({ createProfile, history }) => {
+const ProfileEdit: React.FC<Props> = ({
+  profileState: { profile, loading },
+  createProfile,
+  history
+}) => {
   const [formData, setFormData] = useState(initialState)
   const {
     company,
@@ -59,12 +66,32 @@ const ProfileCreate: React.FC<Props> = ({ createProfile, history }) => {
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false)
 
+  useEffect(() => {
+    !loading &&
+      profile &&
+      setFormData({
+        company: profile.company || '',
+        website: profile.website || '',
+        location: profile.location || '',
+        status: profile.status || '',
+        skills: profile.skills.join(',') || '',
+        githubUsername: profile.githubUsername || '',
+        bio: profile.bio || '',
+        twitter: profile.social.twitter || '',
+        facebook: profile.social.facebook || '',
+        linkedin: profile.social.linkedin || '',
+        youtube: profile.social.youtube || '',
+        instagram: profile.social.instagram || ''
+      })
+    // eslint-disable-next-line
+  }, [loading])
+
   const onChange = (e: React.FormEvent<HTMLFormInputElements>) =>
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value })
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    createProfile(formData, history)
+    createProfile(formData, history, true)
   }
 
   return (
@@ -242,7 +269,11 @@ const ProfileCreate: React.FC<Props> = ({ createProfile, history }) => {
   )
 }
 
+const mapStateToProps = (state: AppState) => ({
+  profileState: state.profile
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   { createProfile }
-)(withRouter(ProfileCreate))
+)(withRouter(ProfileEdit))

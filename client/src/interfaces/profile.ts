@@ -6,7 +6,7 @@ export interface IProfile {
   website: string
   location: string
   status: string
-  skills: string
+  skills: string[]
   bio: string
   githubUsername: string
   experience: [Experience]
@@ -38,5 +38,9 @@ export interface Education {
 }
 
 export interface SocialLinks {
-  [index: string]: string
+  twitter: string
+  facebook: string
+  linkedin: string
+  youtube: string
+  instagram: string
 }

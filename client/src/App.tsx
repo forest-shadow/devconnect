@@ -15,6 +15,7 @@ import PrivateRoute from './components/routing/PrivateRoute'
 
 import './App.css'
 import ProfileCreate from './components/profile/ProfileCreate'
+import ProfileEdit from './components/profile/ProfileEdit'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -41,6 +42,11 @@ const App: React.FC = () => {
                 exact
                 path={ROUTES.PROFILE.CREATE}
                 component={ProfileCreate}
+              />
+              <PrivateRoute
+                exact
+                path={ROUTES.PROFILE.EDIT}
+                component={ProfileEdit}
               />
             </Switch>
           </section>

@@ -15,7 +15,7 @@ export const PROFILE_ERROR = 'PROFILE_ERROR'
 export const PROFILE_CLEAR = 'PROFILE_CLEAR'
 
 export const getCurrentProfile = (): ThunkResult<void> => async (
-  dispatch: ThunkDispatch<AppState, undefined, AnyAction>
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
 ) => {
   try {
     const res = await axios.get(API.PROFILE.CURRENT)
@@ -39,7 +39,7 @@ export const createProfile = (
   history: History,
   edit = false
 ): ThunkResult<void> => async (
-  dispatch: ThunkDispatch<AppState, undefined, AnyAction>
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
 ) => {
   const config = {
     headers: {
