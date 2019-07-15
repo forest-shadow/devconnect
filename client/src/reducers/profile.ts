@@ -1,6 +1,11 @@
 import { IProfile } from '../interfaces/profile'
 import { BaseAction } from '../interfaces/action'
-import { PROFILE_GET, PROFILE_ERROR, PROFILE_CLEAR } from '../actions/types'
+import {
+  PROFILE_GET,
+  PROFILE_ERROR,
+  PROFILE_CLEAR,
+  PROFILE_UPDATE
+} from '../actions/types'
 
 export interface ProfileState {
   profile: IProfile | null
@@ -23,6 +28,7 @@ export default function(state = initialProfileState, action: BaseAction) {
 
   switch (type) {
     case PROFILE_GET:
+    case PROFILE_UPDATE:
       return {
         ...state,
         profile: payload as IProfile,

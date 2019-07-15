@@ -32,12 +32,12 @@ export default {
     UPDATE: PROFILE + '/update',
     GET: (userId: string) => `${PROFILE}/user/${userId}`,
     EXPERIENCE: {
-      ADD: PROFILE_EXPERIENCE,
+      BASE: PROFILE_EXPERIENCE,
       DELETE_BY_ID: (experienceId: string) =>
         `${PROFILE_EXPERIENCE}/${experienceId}`
     },
     EDUCATION: {
-      ADD: PROFILE_EDUCATION,
+      BASE: PROFILE_EDUCATION,
       DELETE_BY_ID: (educationId: string) =>
         `${PROFILE_EDUCATION}/${educationId}`
     },
