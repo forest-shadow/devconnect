@@ -6,18 +6,23 @@ import ROUTES from '../../constants/routes'
 import { AppState } from '../../store'
 import { AuthState } from '../../reducers/auth'
 import { ProfileState } from '../../reducers/profile'
+import { deleteUser } from '../../actions/auth'
 
 import Spinner from '../layout/Spinner'
 import DashboardActions from './DashboardActions'
+import DashboardExperience from './DashboardExperience'
+import DashboardEducation from './DashboardEducation'
 
 interface DashboardProps {
   profile: ProfileState
   auth: AuthState
+  deleteUser: CallableFunction
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
   auth: { user },
-  profile: { profile, loading }
+  profile: { profile, loading },
+  deleteUser
 }) => {
   return loading && profile === null ? (
     <Spinner />
@@ -30,6 +35,8 @@ const Dashboard: React.FC<DashboardProps> = ({
       {profile !== null ? (
         <>
           <DashboardActions />
+          <DashboardExperience experience={profile.experience} />
+          <DashboardEducation education={profile.education} />
         </>
       ) : (
         <>
@@ -39,6 +46,11 @@ const Dashboard: React.FC<DashboardProps> = ({
           </Link>
         </>
       )}
+      <div className="my-2">
+        <button onClick={() => deleteUser()} className="btn btn-danger">
+          <i className="fas fa-user-minus" /> Delete My Account
+        </button>
+      </div>
     </>
   )
 }
@@ -48,6 +60,4 @@ const mapStateToProps = (state: AppState) => ({
   auth: state.auth
 })
 
-export default connect(
-  mapStateToProps
-)(Dashboard)
+export default connect(mapStateToProps, { deleteUser })(Dashboard)

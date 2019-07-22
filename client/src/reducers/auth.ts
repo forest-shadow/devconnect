@@ -5,7 +5,9 @@ import {
   AUTH_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  USER_DELETE,
+  USER_DELETE_ERROR
 } from '../actions/types'
 import { BaseAction } from '../interfaces/action'
 import { IUser } from '../interfaces/user'
@@ -51,10 +53,17 @@ export default function(
     case AUTH_FAIL:
     case LOGIN_FAIL:
     case LOGOUT:
+    case USER_DELETE:
       localStorage.removeItem('token')
       return {
         ...initialAuthState,
         token: null,
+        loading: false
+      }
+    case USER_DELETE_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false
       }
     default:

@@ -8,9 +8,14 @@ import UserModel from '../../../models/User'
 import getGravatarIcon from '../../../services/gravatar'
 
 export const userRegisterValidators = [
-  check('name', 'Name is required').not().isEmpty(),
+  check('name', 'Name is required')
+    .not()
+    .isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
-  check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
+  check(
+    'password',
+    'Please enter a password with 6 or more characters'
+  ).isLength({ min: 6 })
 ]
 
 export const userRegisterMiddleware = async (req: Request, res: Response) => {
@@ -26,7 +31,7 @@ export const userRegisterMiddleware = async (req: Request, res: Response) => {
 
     // see if user exists
     if (user) {
-      return res.status(400).json({ errors: [ { msg: 'Email already exists' } ] })
+      return res.status(400).json({ errors: [{ msg: 'Email already exists' }] })
     } else {
       // get users gravatar
       const avatar = getGravatarIcon(email)
@@ -36,8 +41,7 @@ export const userRegisterMiddleware = async (req: Request, res: Response) => {
       // encrypt password
       const passwordSalt = await bcrypt.genSalt(10)
       newUser.password = await bcrypt.hash(password, passwordSalt)
-      await newUser.save()
-        .catch(err => console.warn(err))
+      await newUser.save().catch(err => console.warn(err))
 
       // return jsonwebtoken in response
       const payload = {
@@ -58,6 +62,8 @@ export const userRegisterMiddleware = async (req: Request, res: Response) => {
     }
   } catch (error) {
     console.error(error.message)
-    return res.status(503).send({ error: `Server Error: Can't create user. Reason: \n${error}` })
+    return res
+      .status(503)
+      .send({ error: `Server Error: Can't create user. Reason: \n${error}` })
   }
 }

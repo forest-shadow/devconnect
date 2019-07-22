@@ -111,7 +111,7 @@ const AddEducation: React.FC<Props> = ({ addEducation, history }) => {
                 toggleDisabled(!dateToDisabled)
               }}
             />{' '}
-            Current Job
+            Current
           </p>
         </div>
         <div className="form-group">

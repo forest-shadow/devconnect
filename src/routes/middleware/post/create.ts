@@ -6,10 +6,15 @@ import UserModel from '../../../models/User'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
 
 export const createPostValidators = [
-  check('text', 'Text is required').not().isEmpty()
+  check('text', 'Text is required')
+    .not()
+    .isEmpty()
 ]
 
-export const createPostMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const createPostMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })

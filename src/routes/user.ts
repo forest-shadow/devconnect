@@ -2,10 +2,17 @@ import express from 'express'
 
 import API from '../constants/api'
 
-import { userRegisterValidators, userRegisterMiddleware } from './middleware/user/register'
+import {
+  userRegisterValidators,
+  userRegisterMiddleware
+} from './middleware/user/register'
 import { tokenCheckout } from './middleware/tokenCheckout'
 import { userAuthMiddleware } from './middleware/user/auth'
-import { userLoginValidators, userLoginMiddleware } from './middleware/user/login'
+import {
+  userLoginValidators,
+  userLoginMiddleware
+} from './middleware/user/login'
+import { deleteCurrentUserMiddleware } from './middleware/user/deleteCurrent'
 
 const router = express.Router()
 
@@ -23,5 +30,7 @@ router.get(API.USER.AUTH, tokenCheckout, userAuthMiddleware)
 // @desc    Login User & Return appropriate JWT Token
 // @access  Public
 router.post(API.USER.LOGIN, userLoginValidators, userLoginMiddleware)
+
+router.delete('/', tokenCheckout, deleteCurrentUserMiddleware)
 
 export default router

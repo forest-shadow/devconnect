@@ -1,10 +1,16 @@
 import express from 'express'
 
 import API from '../constants/api'
-import { createPostValidators, createPostMiddleware } from './middleware/post/create'
+import {
+  createPostValidators,
+  createPostMiddleware
+} from './middleware/post/create'
 import { getPostsMiddleware, getPostMiddleware } from './middleware/post/get'
 import { deletePostMiddleware } from './middleware/post/delete'
-import { likePostMiddleware, unlikePostMiddleware } from './middleware/post/like'
+import {
+  likePostMiddleware,
+  unlikePostMiddleware
+} from './middleware/post/like'
 import {
   createCommentValidators,
   createCommentMiddleware,
@@ -47,7 +53,12 @@ router.put(API.POST.ASSESS.UNLIKE, tokenCheckout, unlikePostMiddleware)
 // @route   POST api/post/:post_id/comment
 // @desc    Comment on a post
 // @access  Private
-router.post(API.POST.COMMENT.ADD, tokenCheckout, createCommentValidators, createCommentMiddleware)
+router.post(
+  API.POST.COMMENT.ADD,
+  tokenCheckout,
+  createCommentValidators,
+  createCommentMiddleware
+)
 
 // @route   Delete api/post/:post_id/comment/:comment_id
 // @desc    Delete comment on a post

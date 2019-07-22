@@ -10,7 +10,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  PROFILE_CLEAR
+  PROFILE_CLEAR,
+  USER_DELETE,
+  USER_DELETE_ERROR
 } from './types'
 import API from '../constants/api'
 import { setAlert } from './alert'
@@ -126,4 +128,25 @@ export const logout: ThunkResult<void> = () => (
 ) => {
   dispatch({ type: PROFILE_CLEAR })
   dispatch({ type: LOGOUT })
+}
+
+export const deleteUser = (): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      await axios.delete(API.USER.BASE)
+
+      dispatch({ type: PROFILE_CLEAR })
+      dispatch({ type: USER_DELETE })
+
+      dispatch(setAlert('Your account has bes permanently deleted', 'success'))
+    } catch (err) {
+      const { statusText, status } = err.response
+      dispatch({
+        type: USER_DELETE_ERROR,
+        payload: { msg: statusText, status: status }
+      })
+    }
+  }
 }

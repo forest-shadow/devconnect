@@ -6,11 +6,18 @@ import { Profile, SocialLinks } from '../../../interfaces/profile'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
 
 export const createProfileValidators = [
-  check('status', 'Status is required').not().isEmpty(),
-  check('skills', 'Skills is required').not().isEmpty()
+  check('status', 'Status is required')
+    .not()
+    .isEmpty(),
+  check('skills', 'Skills is required')
+    .not()
+    .isEmpty()
 ]
 
-export const createProfileMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const createProfileMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -41,7 +48,9 @@ export const createProfileMiddleware = async (req: AuthenticatedUserRequest, res
   if (status) profileFields.status = status
   if (githubUsername) profileFields.githubUsername = githubUsername
   if (skills) {
-    profileFields.skills = skills.split(',').map((skill: string) => skill.trim())
+    profileFields.skills = skills
+      .split(',')
+      .map((skill: string) => skill.trim())
   }
 
   // build social object
@@ -74,5 +83,4 @@ export const createProfileMiddleware = async (req: AuthenticatedUserRequest, res
     console.error(err.message)
     return res.status(500).send('Server Error')
   }
-
 }

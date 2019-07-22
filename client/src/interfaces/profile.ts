@@ -9,30 +9,30 @@ export interface IProfile {
   skills: string[]
   bio: string
   githubUsername: string
-  experience: [Experience]
-  education: [Education]
+  experience: Array<Experience>
+  education: Array<Education>
   social: SocialLinks
   date: Date
 }
 
-interface Experience {
-  id?: string
+export interface Experience {
+  _id?: string
   title: string
   company: string
   location?: string
-  from: Date
-  to?: Date
+  from: string
+  to?: string
   current: boolean
   description?: string
 }
 
 export interface Education {
-  id?: string
+  _id?: string
   school: string
   degree: string
   fieldOfStudy: string
-  from: Date
-  to?: Date
+  from: string
+  to?: string
   current: boolean
   description?: string
 }

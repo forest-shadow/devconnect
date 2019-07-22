@@ -6,21 +6,48 @@ import { AuthenticatedUserRequest } from '../../../interfaces/request'
 import { Education } from '../../../interfaces/profile'
 
 export const addEducationValidators = [
-  check('school', 'School is required').not().isEmpty(),
-  check('degree', 'Degree is required').not().isEmpty(),
-  check('fieldOfStudy', 'Field of study is required').not().isEmpty(),
-  check('from', 'From date is required').not().isEmpty(),
+  check('school', 'School is required')
+    .not()
+    .isEmpty(),
+  check('degree', 'Degree is required')
+    .not()
+    .isEmpty(),
+  check('fieldOfStudy', 'Field of study is required')
+    .not()
+    .isEmpty(),
+  check('from', 'From date is required')
+    .not()
+    .isEmpty()
 ]
 
-export const addEducationMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const addEducationMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array })
   }
 
-  const { school, degree, fieldOfStudy, from, to, current, description } = req.body
-  const newEducation: Education = { school, degree, fieldOfStudy, from, to, current, description }
+  const {
+    school,
+    degree,
+    fieldOfStudy,
+    from,
+    to,
+    current,
+    description
+  } = req.body
+  const newEducation: Education = {
+    school,
+    degree,
+    fieldOfStudy,
+    from,
+    to,
+    current,
+    description
+  }
 
   try {
     const profile = await ProfileModel.findOne({ user: req.user.id })
@@ -33,10 +60,15 @@ export const addEducationMiddleware = async (req: AuthenticatedUserRequest, res:
   }
 }
 
-export const deleteEducationMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const deleteEducationMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
     const profile = await ProfileModel.findOne({ user: req.user.id })
-    const removeIndex = profile.education.map(item => item.id).indexOf(req.params.education_id)
+    const removeIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.education_id)
 
     profile.education.splice(removeIndex, 1)
     await profile.save()

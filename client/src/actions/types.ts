@@ -9,6 +9,8 @@ export const AUTH_FAIL = 'AUTH_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'
+export const USER_DELETE = 'USER_DELETE'
+export const USER_DELETE_ERROR = 'USER_DELETE_ERROR'
 
 export const PROFILE_GET = 'PROFILE_GET'
 export const PROFILE_ERROR = 'PROFILE_ERROR'

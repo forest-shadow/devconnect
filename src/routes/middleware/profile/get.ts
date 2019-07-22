@@ -4,7 +4,10 @@ import { AuthenticatedUserRequest } from '../../../interfaces/request'
 
 export const getAllProfilesMiddleware = async (req: Request, res: Response) => {
   try {
-    const profiles = await ProfileModel.find().populate('user', ['name', 'avatar'])
+    const profiles = await ProfileModel.find().populate('user', [
+      'name',
+      'avatar'
+    ])
     return res.json(profiles)
   } catch (err) {
     console.error(err.message)
@@ -12,7 +15,10 @@ export const getAllProfilesMiddleware = async (req: Request, res: Response) => {
   }
 }
 
-export const getProfileByUserIdMiddleware = async (req: Request, res: Response) => {
+export const getProfileByUserIdMiddleware = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const profile = await ProfileModel.findOne({ user: req.params.user_id })
 
@@ -28,10 +34,15 @@ export const getProfileByUserIdMiddleware = async (req: Request, res: Response) 
   }
 }
 
-export const getCurrentProfileMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const getCurrentProfileMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
-    const profile = await ProfileModel.findOne({ user: req.user.id })
-      .populate('user', ['name', 'avatar'])
+    const profile = await ProfileModel.findOne({ user: req.user.id }).populate(
+      'user',
+      ['name', 'avatar']
+    )
 
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' })

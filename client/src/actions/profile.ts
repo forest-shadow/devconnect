@@ -6,7 +6,11 @@ import { History } from 'history'
 import API from '../constants/api'
 import ROUTES from '../constants/routes'
 import { axiosConfig } from '../constants/config'
-import { PROFILE_GET, PROFILE_ERROR, PROFILE_UPDATE } from './types'
+import {
+  PROFILE_GET,
+  PROFILE_ERROR,
+  PROFILE_UPDATE
+} from './types'
 import { setAlert } from './alert'
 import { ThunkResult } from '../interfaces/action'
 import { AppState } from '../store'
@@ -130,5 +134,47 @@ export const addEducation = (
     history.push(ROUTES.DASHBOARD)
   } catch (err) {
     handlerErrorResponse(err, dispatch)
+  }
+}
+
+export const deleteExperience = (id: string): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  try {
+    const res = await axios.delete(API.PROFILE.EXPERIENCE.DELETE(id))
+
+    dispatch({
+      type: PROFILE_UPDATE,
+      payload: res.data
+    })
+
+    dispatch(setAlert('Experience Removed', 'success'))
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: statusText, status: status }
+    })
+  }
+}
+
+export const deleteEducation = (id: string): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  try {
+    const res = await axios.delete(API.PROFILE.EDUCATION.DELETE(id))
+
+    dispatch({
+      type: PROFILE_UPDATE,
+      payload: res.data
+    })
+
+    dispatch(setAlert('Education Removed', 'success'))
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: statusText, status: status }
+    })
   }
 }

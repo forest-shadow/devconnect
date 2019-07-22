@@ -33,12 +33,12 @@ export default {
     GET: (userId: string) => `${PROFILE}/user/${userId}`,
     EXPERIENCE: {
       BASE: PROFILE_EXPERIENCE,
-      DELETE_BY_ID: (experienceId: string) =>
+      DELETE: (experienceId: string) =>
         `${PROFILE_EXPERIENCE}/${experienceId}`
     },
     EDUCATION: {
       BASE: PROFILE_EDUCATION,
-      DELETE_BY_ID: (educationId: string) =>
+      DELETE: (educationId: string) =>
         `${PROFILE_EDUCATION}/${educationId}`
     },
     GITHUB: {
@@ -46,6 +46,7 @@ export default {
     }
   },
   USER: {
+    BASE: USER,
     REGISTER: USER + '/register',
     AUTH: USER + '/auth',
     LOGIN: USER + '/login'
