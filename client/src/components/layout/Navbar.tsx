@@ -19,6 +19,9 @@ const Navbar: React.FC<NavbarProps> = ({
   const authLinks = (
     <ul>
       <li>
+        <Link to={ROUTES.PROFILES}>Developers</Link>
+      </li>
+      <li>
         <Link to={ROUTES.DASHBOARD}>
           <i className="fas fa-user"></i>{' '}
           <span className="hide-sm">Dashboard</span>
@@ -36,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const guestLinkgs = (
     <ul>
       <li>
-        <Link to="profiles.html">Developers</Link>
+        <Link to={ROUTES.PROFILES}>Developers</Link>
       </li>
       <li>
         <Link to={ROUTES.REGISTER}>Register</Link>

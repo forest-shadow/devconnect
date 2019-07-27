@@ -18,6 +18,7 @@ import ProfileCreate from './components/profile/ProfileCreate'
 import ProfileEdit from './components/profile/ProfileEdit'
 import AddExperience from './components/profile/AddExperience'
 import AddEducation from './components/profile/AddEducation'
+import Profiles from './components/profiles/Profiles'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path={ROUTES.REGISTER} component={Register} />
+              <Route exact path={ROUTES.PROFILES} component={Profiles} />
               <PrivateRoute
                 exact
                 path={ROUTES.DASHBOARD}

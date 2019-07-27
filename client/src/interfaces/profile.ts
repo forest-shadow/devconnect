@@ -1,7 +1,8 @@
 import { IUser } from './user'
 
 export interface IProfile {
-  user: string | IUser
+  _id: string
+  user: IUser
   company: string
   website: string
   location: string
