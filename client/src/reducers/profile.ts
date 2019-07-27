@@ -4,7 +4,9 @@ import {
   PROFILE_GET,
   PROFILE_ERROR,
   PROFILE_CLEAR,
-  PROFILE_UPDATE
+  PROFILE_UPDATE,
+  PROFILES_GET,
+  PROFILE_REPOS_GET
 } from '../actions/types'
 
 export interface ProfileState {
@@ -34,6 +36,12 @@ export default function(state = initialProfileState, action: BaseAction) {
         profile: payload as IProfile,
         loading: false
       }
+    case PROFILES_GET:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      }
     case PROFILE_ERROR:
       return {
         ...state,
@@ -45,6 +53,12 @@ export default function(state = initialProfileState, action: BaseAction) {
         ...state,
         profile: null,
         repos: [],
+        loading: false
+      }
+    case PROFILE_REPOS_GET:
+      return {
+        ...state,
+        repos: payload,
         loading: false
       }
     default:

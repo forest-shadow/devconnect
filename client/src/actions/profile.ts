@@ -9,7 +9,10 @@ import { axiosConfig } from '../constants/config'
 import {
   PROFILE_GET,
   PROFILE_ERROR,
-  PROFILE_UPDATE
+  PROFILE_UPDATE,
+  PROFILES_GET,
+  PROFILE_CLEAR,
+  PROFILE_REPOS_GET
 } from './types'
 import { setAlert } from './alert'
 import { ThunkResult } from '../interfaces/action'
@@ -48,6 +51,66 @@ export const getCurrentProfile = (): ThunkResult<void> => async (
 
     dispatch({
       type: PROFILE_GET,
+      payload: res.data
+    })
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: statusText, status: status }
+    })
+  }
+}
+
+export const getProfiles = (): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  dispatch({ type: PROFILE_CLEAR })
+  try {
+    const res = await axios.get(API.PROFILE.BASE)
+
+    dispatch({
+      type: PROFILES_GET,
+      payload: res.data
+    })
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: statusText, status: status }
+    })
+  }
+}
+
+export const getProfileById = (userId: string): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  dispatch({ type: PROFILE_CLEAR })
+  try {
+    const res = await axios.get(API.PROFILE.GET(userId))
+
+    dispatch({
+      type: PROFILE_GET,
+      payload: res.data
+    })
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: statusText, status: status }
+    })
+  }
+}
+
+export const getProfileRepos = (username: string): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  dispatch({ type: PROFILE_CLEAR })
+  try {
+    const res = await axios.get(API.PROFILE.GET_REPOS(username))
+
+    dispatch({
+      type: PROFILE_REPOS_GET,
       payload: res.data
     })
   } catch (err) {

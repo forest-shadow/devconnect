@@ -41,9 +41,7 @@ export default {
       DELETE: (educationId: string) =>
         `${PROFILE_EDUCATION}/${educationId}`
     },
-    GITHUB: {
-      GET_USER_REPOS: (username: string) => `${PROFILE}/github/${username}`
-    }
+    GET_REPOS: (username: string) => `${PROFILE}/github/${username}`
   },
   USER: {
     BASE: USER,
