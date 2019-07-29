@@ -14,10 +14,10 @@ import Dashboard from './components/dashboard/Dashboard'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 import './App.css'
-import ProfileCreate from './components/profile/ProfileCreate'
-import ProfileEdit from './components/profile/ProfileEdit'
-import AddExperience from './components/profile/AddExperience'
-import AddEducation from './components/profile/AddEducation'
+import ProfileCreate from './components/dashboard/ProfileCreate'
+import ProfileEdit from './components/dashboard/ProfileEdit'
+import AddExperience from './components/dashboard/AddExperience'
+import AddEducation from './components/dashboard/AddEducation'
 import Profiles from './components/profiles/Profiles'
 
 const App: React.FC = () => {

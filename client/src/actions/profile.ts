@@ -17,9 +17,9 @@ import {
 import { setAlert } from './alert'
 import { ThunkResult } from '../interfaces/action'
 import { AppState } from '../store'
-import { ProfileCreateForm } from '../components/profile/ProfileCreate'
-import { AddExperienceForm } from '../components/profile/AddExperience'
-import { AddEducationForm } from '../components/profile/AddEducation'
+import { ProfileCreateForm } from '../components/dashboard/ProfileCreate'
+import { AddExperienceForm } from '../components/dashboard/AddExperience'
+import { AddEducationForm } from '../components/dashboard/AddEducation'
 
 const handlerErrorResponse = (
   error: any,
