@@ -20,7 +20,7 @@ export const getProfileByUserIdMiddleware = async (
   res: Response
 ) => {
   try {
-    const profile = await ProfileModel.findOne({ user: req.params.user_id })
+    const profile = await ProfileModel.findOne({ user: req.params.user_id }).populate('user')
 
     if (!profile) return res.status(400).send({ msg: 'Profile not found' })
     return res.json(profile)
