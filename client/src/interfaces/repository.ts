@@ -1,5 +1,5 @@
 export interface Repository {
-  _id?: string
+  id: string
   html_url: string
   name: string
   description: string

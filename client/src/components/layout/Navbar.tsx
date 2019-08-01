@@ -22,6 +22,9 @@ const Navbar: React.FC<NavbarProps> = ({
         <Link to={ROUTES.PROFILES}>Developers</Link>
       </li>
       <li>
+        <Link to={ROUTES.POSTS}>Posts</Link>
+      </li>
+      <li>
         <Link to={ROUTES.DASHBOARD}>
           <i className="fas fa-user"></i>{' '}
           <span className="hide-sm">Dashboard</span>

@@ -12,5 +12,6 @@ export default {
     ADD_EXPERIENCE: PROFILE + '/add-experience',
     ADD_EDUCATION: PROFILE + '/add-education'
   },
-  PROFILES: '/profiles'
+  PROFILES: '/profiles',
+  POSTS: '/posts'
 }

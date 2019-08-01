@@ -6,17 +6,20 @@ import rootReducer from './reducers'
 import { AlertState, initialAlertState } from './reducers/alert'
 import { AuthState, initialAuthState } from './reducers/auth'
 import { ProfileState, initialProfileState } from './reducers/profile'
+import { PostState, initialPostState } from "./reducers/post";
 
 export interface AppState {
   alert: AlertState
   auth: AuthState
   profile: ProfileState
+  post: PostState
 }
 
 const initialState: AppState = {
   alert: initialAlertState,
   auth: initialAuthState,
-  profile: initialProfileState
+  profile: initialProfileState,
+  post: initialPostState
 }
 
 const middleware = [thunk]

@@ -19,3 +19,6 @@ export const PROFILE_UPDATE = 'PROFILE_UPDATE'
 export const PROFILE_REPOS_GET = 'PROFILE_REPOS_GET'
 
 export const PROFILES_GET = 'PROFILES_GET'
+
+export const POSTS_GET = 'POSTS_GET'
+export const POSTS_ERROR = 'POSTS_ERROR'
