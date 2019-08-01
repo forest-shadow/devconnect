@@ -105,7 +105,6 @@ export const getProfileById = (userId: string): ThunkResult<void> => async (
 export const getProfileRepos = (username: string): ThunkResult<void> => async (
   dispatch: ThunkDispatch<AppState, void, AnyAction>
 ) => {
-  dispatch({ type: PROFILE_CLEAR })
   try {
     const res = await axios.get(API.PROFILE.GET_REPOS(username))
 

@@ -13,6 +13,7 @@ import ProfileTop from './ProfileTop'
 import ProfileAbout from './ProfileAbout'
 import ProfileExperience from './ProfileExperience'
 import ProfileEducation from './ProfileEducation'
+import ProfileGithub from './ProfileGithub'
 
 interface Props {
   getProfileById: CallableFunction
@@ -85,6 +86,10 @@ const Profile: React.FC<Props> = ({
                 <h4>No Experience credentials</h4>
               )}
             </div>
+
+            {profile.githubUsername && (
+              <ProfileGithub username={profile.githubUsername} />
+            )}
           </div>
         </>
       )}

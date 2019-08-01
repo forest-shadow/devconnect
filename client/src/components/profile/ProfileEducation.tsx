@@ -1,7 +1,7 @@
 import React from 'react'
 import Moment from 'react-moment'
 
-import { Education } from "../../interfaces/profile";
+import { Education } from '../../interfaces/profile'
 
 interface Props {
   education: Education
