@@ -1,5 +1,9 @@
 import { BaseAction } from '../interfaces/action'
-import { POSTS_GET, POSTS_ERROR } from '../actions/types'
+import {
+  POSTS_GET,
+  POSTS_ERROR,
+  POST_LIKE_UPDATE
+} from '../actions/types'
 import { IPost } from '../interfaces/post'
 
 export interface PostState {
@@ -30,6 +34,14 @@ export default function(state = initialPostState, action: BaseAction) {
       return {
         ...state,
         error: payload,
+        loading: false
+      }
+    case POST_LIKE_UPDATE:
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
         loading: false
       }
     default:
