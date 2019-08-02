@@ -1,9 +1,10 @@
 import { BaseAction } from '../interfaces/action'
 import { POSTS_GET, POSTS_ERROR } from '../actions/types'
+import { IPost } from '../interfaces/post'
 
 export interface PostState {
-  posts: any[]
-  post: any
+  posts: IPost[]
+  post: IPost | null
   loading: boolean
   error: any
 }

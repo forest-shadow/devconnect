@@ -1,4 +1,5 @@
 const PROFILE = '/profile'
+const POST = '/post'
 
 export default {
   REGISTER: '/register',
@@ -13,5 +14,8 @@ export default {
     ADD_EDUCATION: PROFILE + '/add-education'
   },
   PROFILES: '/profiles',
-  POSTS: '/posts'
+  POSTS: '/posts',
+  POST: {
+    ITEM: (id: string = ':id') => POST + `/${id}`
+  }
 }

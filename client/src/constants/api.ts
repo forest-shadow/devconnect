@@ -10,12 +10,11 @@ const appendPostUrl = appendBaseUrl(POST)
 const getPostIdUrl = (postId: string) => appendPostUrl(postId)
 const getPostCommentUrl = (postId: string) => getPostIdUrl(postId) + '/comment'
 
-const POSTS = API_BASE + '/posts'
-
 const USER = API_BASE + '/user'
 
 export default {
   POST: {
+    BASE: POST,
     GET: getPostIdUrl,
     DELETE: getPostIdUrl,
     ASSESS: {
@@ -27,9 +26,6 @@ export default {
       DELETE: (postId: string, commentId: string) =>
         `${getPostCommentUrl(postId)}/${commentId}`
     }
-  },
-  POSTS: {
-    BASE: POSTS
   },
   PROFILE: {
     BASE: PROFILE,

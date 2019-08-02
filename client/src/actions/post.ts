@@ -11,7 +11,7 @@ export const getPosts = (): ThunkResult<void> => async (
   dispatch: ThunkDispatch<AppState, void, AnyAction>
 ) => {
   try {
-    const res = await axios.get(API.POSTS.BASE)
+    const res = await axios.get(API.POST.BASE)
 
     dispatch({
       type: POSTS_GET,
