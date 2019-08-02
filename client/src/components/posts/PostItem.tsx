@@ -8,20 +8,22 @@ import { IPost } from '../../interfaces/post'
 import { AuthState } from '../../reducers/auth'
 import { AppState } from '../../store'
 
-import { likePost, unlikePost } from '../../actions/post'
+import { likePost, unlikePost, deletePost } from '../../actions/post'
 
 interface Props {
   post: IPost
   auth: AuthState
   likePost: CallableFunction
   unlikePost: CallableFunction
+  deletePost: CallableFunction
 }
 
 const PostItem: React.FC<Props> = ({
   post: { _id, text, name, avatar, user, likes, comments, date },
   auth,
   likePost,
-  unlikePost
+  unlikePost,
+  deletePost
 }) => {
   return (
     <div className="post bg-white p-1 my-1">
@@ -50,7 +52,7 @@ const PostItem: React.FC<Props> = ({
           )}
         </Link>
         {!auth.loading && auth.user && user === auth.user._id && (
-          <button type="button" className="btn btn-danger">
+          <button onClick={() => deletePost(_id)} type="button" className="btn btn-danger">
             <i className="fas fa-times" />
           </button>
         )}
@@ -65,5 +67,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(
   mapStateToProps,
-  { likePost, unlikePost }
+  { likePost, unlikePost, deletePost }
 )(PostItem)

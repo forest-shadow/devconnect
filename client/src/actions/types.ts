@@ -24,3 +24,4 @@ export const POSTS_GET = 'POSTS_GET'
 export const POSTS_ERROR = 'POSTS_ERROR'
 
 export const POST_LIKE_UPDATE = 'POST_LIKE_UPDATE'
+export const POST_DELETE = 'POST_DELETE'
