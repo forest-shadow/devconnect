@@ -2,7 +2,9 @@ import { BaseAction } from '../interfaces/action'
 import {
   POSTS_GET,
   POSTS_ERROR,
-  POST_LIKE_UPDATE, POST_DELETE
+  POST_LIKE_UPDATE,
+  POST_DELETE,
+  POST_ADD
 } from '../actions/types'
 import { IPost } from '../interfaces/post'
 
@@ -42,6 +44,12 @@ export default function(state = initialPostState, action: BaseAction) {
         posts: state.posts.map(post =>
           post._id === payload.id ? { ...post, likes: payload.likes } : post
         ),
+        loading: false
+      }
+    case POST_ADD:
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
         loading: false
       }
     case POST_DELETE:
