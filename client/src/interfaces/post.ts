@@ -13,7 +13,7 @@ interface PostLike {
   user: PostUser
 }
 
-interface PostComment {
+export interface PostComment {
   _id?: string
   user: PostUser
   text: string

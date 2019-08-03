@@ -10,6 +10,7 @@ import { PostState } from '../../reducers/post'
 import Spinner from '../layout/Spinner'
 import PostItem from '../posts/PostItem'
 import CommentForm from './CommentForm'
+import CommentItem from './CommentItem'
 
 interface Props {
   getPost: CallableFunction
@@ -38,6 +39,11 @@ const Post: React.FC<Props> = ({
       </Link>
       <PostItem post={post} />
       <CommentForm postId={post._id} />
+      <div className="comments">
+        {post.comments.map(comment => (
+          <CommentItem key={comment._id} comment={comment} postId={post._id} />
+        ))}
+      </div>
     </>
   )
 }
