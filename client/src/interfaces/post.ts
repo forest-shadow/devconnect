@@ -14,7 +14,7 @@ interface PostLike {
 }
 
 interface PostComment {
-  id?: string
+  _id?: string
   user: PostUser
   text: string
   name: string

@@ -4,7 +4,10 @@ import {
   POSTS_ERROR,
   POST_LIKE_UPDATE,
   POST_DELETE,
-  POST_ADD, POST_GET
+  POST_ADD,
+  POST_GET,
+  POST_COMMENT_ADD,
+  POST_COMMENT_DELETE
 } from '../actions/types'
 import { IPost } from '../interfaces/post'
 
@@ -62,6 +65,21 @@ export default function(state = initialPostState, action: BaseAction) {
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== payload),
+        loading: false
+      }
+    case POST_COMMENT_ADD:
+      return {
+        ...state,
+        post: { ...state.post, comments: payload},
+        loading: false
+      }
+    case POST_COMMENT_DELETE:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post && state.post.comments.filter(comment => comment._id !== payload)
+        },
         loading: false
       }
     default:
