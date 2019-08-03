@@ -7,7 +7,11 @@ const getGithubUri = config.get<Function>('githubUri')
 export const getUserReposMiddleware = async (req: Request, res: Response) => {
   try {
     const options = {
-      uri: getGithubUri(req.params.username, process.env.GITHUB_CLIENT_ID, process.env.GITHUB_CLIENT_SECRET),
+      uri: getGithubUri(
+        req.params.username,
+        process.env.GITHUB_CLIENT_ID,
+        process.env.GITHUB_CLIENT_SECRET
+      ),
       method: 'GET',
       headers: { 'user-agent': 'node.js' }
     }

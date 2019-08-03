@@ -3,7 +3,10 @@ import { Response } from 'express'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
 import PostModel from '../../../models/Post'
 
-export const deletePostMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const deletePostMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
     const post = await PostModel.findById(req.params.post_id)
 

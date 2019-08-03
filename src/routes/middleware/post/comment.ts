@@ -5,10 +5,15 @@ import UserModel from '../../../models/User'
 import PostModel from '../../../models/Post'
 
 export const createCommentValidators = [
-  check('text', 'Text is required').not().isEmpty()
+  check('text', 'Text is required')
+    .not()
+    .isEmpty()
 ]
 
-export const createCommentMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const createCommentMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -35,12 +40,17 @@ export const createCommentMiddleware = async (req: AuthenticatedUserRequest, res
   }
 }
 
-export const deleteCommentMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const deleteCommentMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
     const post = await PostModel.findById(req.params.post_id)
 
     // pull out comment
-    const comment = post.comments.find(comment => comment.id === req.params.comment_id)
+    const comment = post.comments.find(
+      comment => comment.id === req.params.comment_id
+    )
 
     // make sure comment exists
     if (!comment) {

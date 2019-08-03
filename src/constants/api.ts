@@ -21,7 +21,7 @@ export default {
     DELETE: POST_ID,
     ASSESS: {
       LIKE: POST_ID + '/like',
-      UNLIKE: POST_ID + 'unlike'
+      UNLIKE: POST_ID + '/unlike'
     },
     COMMENT: {
       ADD: POST_COMMENT,

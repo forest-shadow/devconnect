@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-export const tokenCheckout = (req: Request, res: Response, next: NextFunction) => {
+export const tokenCheckout = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   // get token from header
   const token = req.header('x-auth-token')
 
@@ -17,7 +21,6 @@ export const tokenCheckout = (req: Request, res: Response, next: NextFunction) =
     req.user = decoded.user
     next()
   } catch (error) {
-    return res.status(401).json( { msg: 'Token is not valid' } )
+    return res.status(401).json({ msg: 'Token is not valid' })
   }
 }
-

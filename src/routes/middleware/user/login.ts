@@ -23,13 +23,13 @@ export const userLoginMiddleware = async (req: Request, res: Response) => {
     const user = await User.findOne({ email })
 
     if (!user) {
-      return res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] })
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] })
     }
 
     // check password matching
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
-      return res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] })
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] })
     }
 
     // return jsonwebtoken in response
@@ -50,6 +50,8 @@ export const userLoginMiddleware = async (req: Request, res: Response) => {
     )
   } catch (error) {
     console.error(error.message)
-    return res.status(503).send({ error: `Server Error: Can't create user. Reason: \n${error}` })
+    return res
+      .status(503)
+      .send({ error: `Server Error: Can't create user. Reason: \n${error}` })
   }
 }

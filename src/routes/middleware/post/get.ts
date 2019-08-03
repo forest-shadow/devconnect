@@ -2,7 +2,10 @@ import { Response } from 'express'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
 import PostModel from '../../../models/Post'
 
-export const getPostsMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const getPostsMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
     const posts = await PostModel.find().sort({ date: '-1' })
     return res.json(posts)
@@ -12,7 +15,10 @@ export const getPostsMiddleware = async (req: AuthenticatedUserRequest, res: Res
   }
 }
 
-export const getPostMiddleware = async (req: AuthenticatedUserRequest, res: Response) => {
+export const getPostMiddleware = async (
+  req: AuthenticatedUserRequest,
+  res: Response
+) => {
   try {
     const post = await PostModel.findById(req.params.post_id)
 
