@@ -21,6 +21,7 @@ import AddEducation from './components/dashboard/AddEducation'
 import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
+import Post from './components/post/Post'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -69,6 +70,11 @@ const App: React.FC = () => {
                 exact
                 path={ROUTES.POSTS}
                 component={Posts}
+              />
+              <PrivateRoute
+                exact
+                path={ROUTES.POST.ITEM()}
+                component={Post}
               />
             </Switch>
           </section>

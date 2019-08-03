@@ -4,7 +4,7 @@ import {
   POSTS_ERROR,
   POST_LIKE_UPDATE,
   POST_DELETE,
-  POST_ADD
+  POST_ADD, POST_GET
 } from '../actions/types'
 import { IPost } from '../interfaces/post'
 
@@ -36,6 +36,12 @@ export default function(state = initialPostState, action: BaseAction) {
       return {
         ...state,
         error: payload,
+        loading: false
+      }
+    case POST_GET:
+      return {
+        ...state,
+        post: payload,
         loading: false
       }
     case POST_LIKE_UPDATE:

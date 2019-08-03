@@ -7,7 +7,8 @@ import {
   POSTS_ERROR,
   POST_LIKE_UPDATE,
   POST_DELETE,
-  POST_ADD
+  POST_ADD,
+  POST_GET
 } from './types'
 import API from '../constants/api'
 import { ThunkResult } from '../interfaces/action'
@@ -105,6 +106,25 @@ export const addPost = (formData: { text: string }): ThunkResult<void> => async 
     })
 
     dispatch(setAlert('Post Created', 'success'))
+  } catch (err) {
+    const { statusText, status } = err.response
+    dispatch({
+      type: POSTS_ERROR,
+      payload: { msg: statusText, status: status }
+    })
+  }
+}
+
+export const getPost = (postId: string): ThunkResult<void> => async (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+) => {
+  try {
+    const res = await axios.get(API.POST.GET(postId))
+
+    dispatch({
+      type: POST_GET,
+      payload: res.data
+    })
   } catch (err) {
     const { statusText, status } = err.response
     dispatch({
