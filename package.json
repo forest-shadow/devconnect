@@ -41,7 +41,7 @@
     "chokidar": "^3.5.3",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^7.6.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.22",
     "ts-node": "^8.2.0",
     "tslint": "^5.13.1",
     "tslint-eslint-rules": "^5.4.0",
