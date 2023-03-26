@@ -37,7 +37,7 @@
     "@types/express": "^4.17.17",
     "@types/gravatar": "^1.8.3",
     "@types/jsonwebtoken": "^9.0.1",
-    "@types/node": "^11.10.4",
+    "@types/node": "^18.15.10",
     "chokidar": "^2.1.2",
     "chokidar-cli": "^1.2.2",
     "concurrently": "^4.1.0",
