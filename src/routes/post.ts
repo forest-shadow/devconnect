@@ -16,46 +16,46 @@ import {
   createCommentMiddleware,
   deleteCommentMiddleware
 } from './middleware/post/comment'
-import { tokenCheckout } from './middleware/tokenCheckout'
+import { AuthController } from '../controllers/AuthController'
 
 const router = express.Router()
 
 // @route   POST api/post
 // @desc    Create a post
 // @access  Public
-router.post('/', tokenCheckout, createPostValidators, createPostMiddleware)
+router.post('/', AuthController.tokenCheckout, createPostValidators, createPostMiddleware)
 
 // @route   GET api/post
 // @desc    Get all posts
 // @access  Private
-router.get('/', tokenCheckout, getPostsMiddleware)
+router.get('/', AuthController.tokenCheckout, getPostsMiddleware)
 
 // @route   GET api/post/:post_id
 // @desc    Get post by id
 // @access  Private
-router.get(API.POST.GET_BY_ID, tokenCheckout, getPostMiddleware)
+router.get(API.POST.GET_BY_ID, AuthController.tokenCheckout, getPostMiddleware)
 
 // @route   DELETE api/post/:post_id
 // @desc    Delete post by id
 // @access  Private
-router.delete(API.POST.DELETE, tokenCheckout, deletePostMiddleware)
+router.delete(API.POST.DELETE, AuthController.tokenCheckout, deletePostMiddleware)
 
 // @route   PUT api/post/:post_id/like
 // @desc    Like a post
 // @access  Private
-router.put(API.POST.ASSESS.LIKE, tokenCheckout, likePostMiddleware)
+router.put(API.POST.ASSESS.LIKE, AuthController.tokenCheckout, likePostMiddleware)
 
 // @route   PUT api/post/:post_id/unlike
 // @desc    Unlike a post
 // @access  Private
-router.put(API.POST.ASSESS.UNLIKE, tokenCheckout, unlikePostMiddleware)
+router.put(API.POST.ASSESS.UNLIKE, AuthController.tokenCheckout, unlikePostMiddleware)
 
 // @route   POST api/post/:post_id/comment
 // @desc    Comment on a post
 // @access  Private
 router.post(
   API.POST.COMMENT.ADD,
-  tokenCheckout,
+  AuthController.tokenCheckout,
   createCommentValidators,
   createCommentMiddleware
 )
@@ -63,6 +63,6 @@ router.post(
 // @route   Delete api/post/:post_id/comment/:comment_id
 // @desc    Delete comment on a post
 // @access  Private
-router.delete(API.POST.COMMENT.DELETE, tokenCheckout, deleteCommentMiddleware)
+router.delete(API.POST.COMMENT.DELETE, AuthController.tokenCheckout, deleteCommentMiddleware)
 
 export default router
