@@ -7,15 +7,11 @@ const connectDB = async () => {
   const DB_URI = getDBUri(process.env.MONGODB_USER, process.env.MONGODB_USER_PASSWORD)
 
   try {
-    await mongoose.connect(DB_URI, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    })
+    await mongoose.connect(DB_URI)
 
     console.log('MongoDB Connected')
   } catch (error) {
-    console.error(error.message)
+    console.error('MongoDB error:', error.message)
 
     // Exit process with failure
     process.exit(1)
