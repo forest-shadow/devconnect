@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { Profile } from '../interfaces/profile'
+import { Profile } from '../types/Profile.types'
 
 const ProfileSchema = new mongoose.Schema({
   user: {
