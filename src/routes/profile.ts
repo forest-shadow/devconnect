@@ -1,35 +1,18 @@
 import express from 'express'
 
 import API from '../constants/api'
-import {
-  getCurrentProfileMiddleware,
-  getAllProfilesMiddleware,
-  getProfileByUserIdMiddleware
-} from './middleware/profile/get'
-import {
-  createProfileValidators,
-  createProfileMiddleware
-} from './middleware/profile/create'
-import { deleteCurrentProfileMiddleware } from './middleware/profile/deleteCurrent'
-import {
-  addExperienceValidators,
-  addExperienceMiddleware,
-  deleteExperienceMiddleware
-} from './middleware/profile/experience'
-import {
-  addEducationMiddleware,
-  addEducationValidators,
-  deleteEducationMiddleware
-} from './middleware/profile/education'
-import { getUserReposMiddleware } from './middleware/profile/github'
 import { AuthController } from '../controllers/AuthController'
+import { ProfileController, createProfileValidators } from '../controllers/ProfileController'
+import { ProfileExperienceController, addExperienceValidators } from '../controllers/ProfileExperienceController'
+import { ProfileEducationController, addEducationValidators } from '../controllers/ProfileEducationController'
+import { ProfileGithubController } from '../controllers/ProfileGithubController'
 
 const router = express.Router()
 
 // @route   GET api/profile/current
 // @desc    Get current user's profile
 // @access  Private
-router.get(API.PROFILE.CURRENT, AuthController.tokenCheckout, getCurrentProfileMiddleware)
+router.get(API.PROFILE.CURRENT, AuthController.tokenCheckout, ProfileController.getCurrent)
 
 // @route   POST api/profile
 // @desc    Create or Update user profile
@@ -38,23 +21,23 @@ router.post(
   ['/', API.PROFILE.UPDATE],
   AuthController.tokenCheckout,
   createProfileValidators,
-  createProfileMiddleware
+  ProfileController.create
 )
 
 // @route   GET api/profile
 // @desc    Get all profiles
 // @access  Public
-router.get('/', getAllProfilesMiddleware)
+router.get('/', ProfileController.getAll)
 
 // @route   GET api/profile/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
-router.get(API.PROFILE.GET_BY_USER_ID, getProfileByUserIdMiddleware)
+router.get(API.PROFILE.GET_BY_USER_ID, ProfileController.getSingular)
 
 // @route   DELETE api/profile
 // @desc    Delete current profile, related user & posts
 // @access  Private
-router.delete('/', AuthController.tokenCheckout, deleteCurrentProfileMiddleware)
+router.delete('/', AuthController.tokenCheckout, ProfileController.delete)
 
 // @route   PUT api/profile/experience
 // @desc    Add profile experience
@@ -63,7 +46,7 @@ router.put(
   API.PROFILE.EXPERIENCE.ADD,
   AuthController.tokenCheckout,
   addExperienceValidators,
-  addExperienceMiddleware
+  ProfileExperienceController.add
 )
 
 // @route   DELETE api/profile/experience/:experience_id
@@ -72,7 +55,7 @@ router.put(
 router.delete(
   API.PROFILE.EXPERIENCE.DELETE_BY_ID,
   AuthController.tokenCheckout,
-  deleteExperienceMiddleware
+  ProfileExperienceController.delete
 )
 
 // @route   PUT api/profile/education
@@ -82,7 +65,7 @@ router.put(
   API.PROFILE.EDUCATION.ADD,
   AuthController.tokenCheckout,
   addEducationValidators,
-  addEducationMiddleware
+  ProfileEducationController.add
 )
 
 // @route   DELETE api/profile/education/:education_id
@@ -91,12 +74,12 @@ router.put(
 router.delete(
   API.PROFILE.EDUCATION.DELETE_BY_ID,
   AuthController.tokenCheckout,
-  deleteEducationMiddleware
+  ProfileEducationController.delete
 )
 
 // @route   GET api/profile/github/:username
 // @desc    Get user repos from Github
 // @access  Public
-router.get(API.PROFILE.GITHUB.GET_USER_REPOS, getUserReposMiddleware)
+router.get(API.PROFILE.GITHUB.GET_USER_REPOS, ProfileGithubController.getRepos)
 
 export default router
