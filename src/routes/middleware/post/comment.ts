@@ -1,4 +1,4 @@
-import { check, validationResult } from 'express-validator/check'
+import { check, validationResult } from 'express-validator'
 import { AuthenticatedUserRequest } from '../../../interfaces/request'
 import { Response } from 'express'
 import UserModel from '../../../models/User'
