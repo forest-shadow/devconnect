@@ -1,7 +1,6 @@
 import express from 'express'
 
 import API from '../constants/api'
-import { tokenCheckout } from './middleware/tokenCheckout'
 import {
   getCurrentProfileMiddleware,
   getAllProfilesMiddleware,
@@ -23,20 +22,21 @@ import {
   deleteEducationMiddleware
 } from './middleware/profile/education'
 import { getUserReposMiddleware } from './middleware/profile/github'
+import { AuthController } from '../controllers/AuthController'
 
 const router = express.Router()
 
 // @route   GET api/profile/current
 // @desc    Get current user's profile
 // @access  Private
-router.get(API.PROFILE.CURRENT, tokenCheckout, getCurrentProfileMiddleware)
+router.get(API.PROFILE.CURRENT, AuthController.tokenCheckout, getCurrentProfileMiddleware)
 
 // @route   POST api/profile
 // @desc    Create or Update user profile
 // @access  Private
 router.post(
   ['/', API.PROFILE.UPDATE],
-  tokenCheckout,
+  AuthController.tokenCheckout,
   createProfileValidators,
   createProfileMiddleware
 )
@@ -54,14 +54,14 @@ router.get(API.PROFILE.GET_BY_USER_ID, getProfileByUserIdMiddleware)
 // @route   DELETE api/profile
 // @desc    Delete current profile, related user & posts
 // @access  Private
-router.delete('/', tokenCheckout, deleteCurrentProfileMiddleware)
+router.delete('/', AuthController.tokenCheckout, deleteCurrentProfileMiddleware)
 
 // @route   PUT api/profile/experience
 // @desc    Add profile experience
 // @access  Private
 router.put(
   API.PROFILE.EXPERIENCE.ADD,
-  tokenCheckout,
+  AuthController.tokenCheckout,
   addExperienceValidators,
   addExperienceMiddleware
 )
@@ -71,7 +71,7 @@ router.put(
 // @access  Private
 router.delete(
   API.PROFILE.EXPERIENCE.DELETE_BY_ID,
-  tokenCheckout,
+  AuthController.tokenCheckout,
   deleteExperienceMiddleware
 )
 
@@ -80,7 +80,7 @@ router.delete(
 // @access  Private
 router.put(
   API.PROFILE.EDUCATION.ADD,
-  tokenCheckout,
+  AuthController.tokenCheckout,
   addEducationValidators,
   addEducationMiddleware
 )
@@ -90,7 +90,7 @@ router.put(
 // @access  Private
 router.delete(
   API.PROFILE.EDUCATION.DELETE_BY_ID,
-  tokenCheckout,
+  AuthController.tokenCheckout,
   deleteEducationMiddleware
 )
 
