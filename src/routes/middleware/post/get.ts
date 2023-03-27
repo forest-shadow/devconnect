@@ -7,7 +7,7 @@ export const getPostsMiddleware = async (
   res: Response
 ) => {
   try {
-    const posts = await PostModel.find().sort({ date: '-1' })
+    const posts = await PostModel.find().sort({ date: -1 })
     return res.json(posts)
   } catch (err) {
     console.error(err.message)
