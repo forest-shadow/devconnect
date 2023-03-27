@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { User } from '../interfaces/user'
+import { User } from './User.types'
 
 export interface AuthenticatedUserRequest extends Request {
   user: User
