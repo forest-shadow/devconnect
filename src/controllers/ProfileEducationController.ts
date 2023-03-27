@@ -1,8 +1,8 @@
-import { AuthenticatedUserRequest } from '../interfaces/request'
+import { AuthenticatedUserRequest } from '../types/Request.types'
 import { Response } from 'express'
 import { check, validationResult } from 'express-validator'
 import { HTTP_STATUS_CODE } from '../types/HTTP.types'
-import { Education } from '../interfaces/profile'
+import { Education } from '../types/Profile.types'
 import ProfileModel from '../models/Profile'
 import { httpStatusMessages } from '../constants/http'
 
