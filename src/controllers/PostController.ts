@@ -1,5 +1,5 @@
 import { check, validationResult } from 'express-validator'
-import { AuthenticatedUserRequest } from '../interfaces/request'
+import { AuthenticatedUserRequest } from '../types/Request.types'
 import { Response } from 'express'
 import UserModel from '../models/User'
 import PostModel from '../models/Post'

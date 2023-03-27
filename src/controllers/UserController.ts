@@ -8,7 +8,7 @@ import ProfileModel from '../models/Profile'
 import UserModel from '../models/User'
 
 import getGravatarIcon from '../services/gravatar'
-import { AuthenticatedUserRequest } from '../interfaces/request'
+import { AuthenticatedUserRequest } from '../types/Request.types'
 import { HTTP_STATUS_CODE } from '../types/HTTP.types'
 import { httpStatusMessages } from '../constants/http'
 
