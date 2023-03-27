@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { Post } from '../interfaces/post'
+import { Post } from '../types/Post.types'
 
 const Schema = mongoose.Schema
 
