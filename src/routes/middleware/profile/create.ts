@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import { check, validationResult } from 'express-validator/check'
+import { check, validationResult } from 'express-validator'
 
 import ProfileModel from '../../../models/Profile'
 import { Profile, SocialLinks } from '../../../interfaces/profile'
