@@ -1,4 +1,4 @@
-import { User } from '../interfaces/user'
+import { User } from './User.types'
 import { Schema } from 'mongoose'
 
 export interface Post {

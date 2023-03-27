@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose'
-import { User } from '../interfaces/user'
+import { User } from './User.types'
 
 export interface Profile {
   user: string|User|Schema.Types.ObjectId,
