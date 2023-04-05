@@ -26,7 +26,6 @@ const Routes: React.FC<Props> = props => (
       <Route exact path={ROUTES.LOGIN} component={Login} />
       <Route exact path={ROUTES.REGISTER} component={Register} />
       <Route exact path={ROUTES.PROFILES} component={Profiles} />
-      <Route exact path={ROUTES.PROFILE.ITEM()} component={Profile} />
       <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
       <PrivateRoute
         exact
@@ -44,6 +43,7 @@ const Routes: React.FC<Props> = props => (
         path={ROUTES.PROFILE.ADD_EDUCATION}
         component={AddEducation}
       />
+      <Route exact path={ROUTES.PROFILE.ITEM()} component={Profile} />
       <PrivateRoute exact path={ROUTES.POSTS} component={Posts} />
       <PrivateRoute exact path={ROUTES.POST.ITEM()} component={Post} />
       <Route component={NotFound} />
