@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -7,6 +7,7 @@ import { AppState } from '../../store'
 import { AuthState } from '../../reducers/auth'
 import { ProfileState } from '../../reducers/profile'
 import { deleteUser } from '../../actions/auth'
+import { getCurrentProfile } from '../../actions/profile'
 
 import Spinner from '../layout/Spinner'
 import DashboardActions from './DashboardActions'
@@ -17,21 +18,33 @@ interface DashboardProps {
   profile: ProfileState
   auth: AuthState
   deleteUser: CallableFunction
+  getCurrentProfile: CallableFunction
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
   auth: { user },
   profile: { profile, loading },
-  deleteUser
+  deleteUser,
+  getCurrentProfile
 }) => {
+  useEffect(() => {
+    getCurrentProfile()
+  }, [getCurrentProfile])
   return loading && profile === null ? (
     <Spinner />
   ) : (
     <>
-      <h1 className="large text-primary">Dashboard</h1>
-      <p className="lead">
-        <i className="fas fa-user"></i> {user && user.name}
-      </p>
+      {
+        user && user.name ? (
+          <>
+            <h1 className="large text-primary">Dashboard</h1>
+            <p className="lead">
+              <i className="fas fa-user"></i> {user.name}
+            </p>
+          </>
+        ) : <></>
+      }
+      
       {profile !== null ? (
         <>
           <DashboardActions />
@@ -60,4 +73,4 @@ const mapStateToProps = (state: AppState) => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { deleteUser })(Dashboard)
+export default connect(mapStateToProps, { deleteUser, getCurrentProfile })(Dashboard)
